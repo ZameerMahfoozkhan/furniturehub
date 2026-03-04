@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Hub Ayodhya | Premium Furniture for Home & Office</title>
+    <meta name="description"
+        content="Furniture Hub Ayodhya provides high-quality, durable, and stylish furniture for homes and offices at affordable prices. Experience premium aesthetics.">
+    <meta name="keywords"
+        content="Furniture, Ayodhya, Home Furniture, Office Furniture, Premium Quality, Sofas, Beds, Dining Tables">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-couch"></i> Furniture Hub <span>Ayodhya</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#custom-furniture">Custom</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search furniture..." aria-label="Search furniture">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="nav-contact">
+                    <a href="https://wa.me/919580659559" target="_blank" class="btn btn-outline nav-whatsapp-btn"
+                        aria-label="WhatsApp Contact">
+                        <i class="fa-brands fa-whatsapp"></i> <span class="whatsapp-number">+91 9580659559</span>
+                    </a>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <button class="close-menu-btn" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="mobile-nav-links">
+            <a href="index.html#home" class="mobile-link">Home</a>
+            <a href="index.html#about" class="mobile-link">About</a>
+            <a href="index.html#categories" class="mobile-link">Categories</a>
+            <a href="index.html#custom-furniture" class="mobile-link">Custom</a>
+            <a href="index.html#contact" class="mobile-link">Contact</a>
+
+            <div class="mobile-search" style="margin-top: 1rem; width: 80%;">
+                <div class="search-box" style="width: 100%;">
+                    <input type="text" id="mobileSearchInput" placeholder="Search furniture..."
+                        aria-label="Search furniture" style="width: 100%;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+
+            <a href="https://wa.me/919580659559" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+            </a>
+        </div>
+    </div>
+
+    <!-- Category Header -->
+    <section class="section-padding"
+        style="padding-top: 150px; background-color: var(--bg-light); padding-bottom: 40px;">
+        <div class="container text-center">
+            <h1 id="category-page-title" class="section-title" style="font-size: 3rem;">Furniture Collection</h1>
+            <div class="title-underline center"></div>
+            <p>Explore our wide range of premium furniture tailored for this category.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products section-padding" style="padding-top: 40px;">
+        <div class="container">
+            <div class="products-grid" id="product-container">
+                <!-- Products will be generated dynamically by JS -->
+            </div>
+
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="index.html#categories" class="btn btn-outline btn-large">
+                    <i class="fa-solid fa-arrow-left"></i> Back to All Categories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo footer-logo">
+                        <i class="fa-solid fa-couch"></i> Furniture Hub <span>Ayodhya</span>
+                    </a>
+                    <p>Providing high quality, durable and stylish furniture for homes and offices at affordable prices.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/919580659559" aria-label="WhatsApp"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <strong>Visit Us</strong>
+                                <span>Ayodhya, Uttar Pradesh, India</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <strong>Call / WhatsApp</strong>
+                                <span><a href="https://wa.me/919580659559">+91 9580659559</a></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Furniture Hub Ayodhya. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919580659559" class="floating-wa" target="_blank" aria-label="Chat with us on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
