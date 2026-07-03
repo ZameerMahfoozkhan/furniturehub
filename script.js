@@ -124,13 +124,15 @@ const products = [
 ];
 
 // WhatsApp Number
-const WA_NUMBER = "919580659559";
+const WA_NUMBER = "919653062736";
 
 // DOM Elements
 document.addEventListener("DOMContentLoaded", () => {
-    // Check if we log on a category page
+    // Get base path for assets (images)
     const urlParams = new URLSearchParams(window.location.search);
     const categoryQuery = urlParams.get('category');
+    const isInSubfolder = window.location.pathname.includes('/category/');
+    const basePath = isInSubfolder ? '../' : '';
 
     // Set Page Title if category
     if (categoryQuery) {
@@ -145,12 +147,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (categoryQuery) {
         const filtered = products.filter(p => p.category === categoryQuery);
-        renderProducts(filtered);
+        renderProducts(filtered, basePath);
     } else if (isHomePage) {
         const featured = products.filter(p => p.isFeatured);
-        renderProducts(featured);
+        renderProducts(featured, basePath);
     } else {
-        renderProducts();
+        renderProducts(products, basePath);
     }
 
     // 2. Set Current Year in Footer
@@ -173,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /**
  * Render product cards dynamically
  */
-function renderProducts(productsToRender = products) {
+function renderProducts(productsToRender = products, basePath = '') {
     const productContainer = document.getElementById("product-container");
     if (!productContainer) return;
 
@@ -206,7 +208,7 @@ function renderProducts(productsToRender = products) {
             let indicators = "";
 
             product.images.forEach((img, idx) => {
-                carouselItems += `<img src="${img}" alt="${product.name} View ${idx + 1}" loading="lazy" class="carousel-img">`;
+                carouselItems += `<img src="${basePath}${img}" alt="${product.name} View ${idx + 1}" loading="lazy" class="carousel-img">`;
                 indicators += `<div class="carousel-dot ${idx === 0 ? 'active' : ''}" data-idx="${idx}"></div>`;
             });
 
@@ -223,7 +225,7 @@ function renderProducts(productsToRender = products) {
                 </div>
             `;
         } else {
-            imageHtml = `<img src="${product.image}" alt="${product.name}" loading="lazy">`;
+            imageHtml = `<img src="${basePath}${product.image}" alt="${product.name}" loading="lazy">`;
         }
 
         html += `
@@ -346,7 +348,11 @@ function initSearch() {
             p.name.toLowerCase().includes(lowerQuery) ||
             p.description.toLowerCase().includes(lowerQuery)
         );
-        renderProducts(filtered);
+        
+        // Pass basePath to renderProducts during search as well
+        const isInSubfolder = window.location.pathname.includes('/category/');
+        const basePath = isInSubfolder ? '../' : '';
+        renderProducts(filtered, basePath);
 
         // Re-apply visible class to new elements to display them properly
         setTimeout(() => {
