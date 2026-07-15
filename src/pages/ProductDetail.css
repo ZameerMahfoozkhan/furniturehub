@@ -1,0 +1,231 @@
+/* ═══════════════════════════════════════
+   PRODUCT DETAIL PAGE
+   ═══════════════════════════════════════ */
+
+.product-detail {
+  padding-top: 100px;
+}
+
+/* ─── Breadcrumb ─── */
+.breadcrumb {
+  padding: var(--space-lg) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--color-text-tertiary);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb__sep {
+  opacity: 0.3;
+}
+
+.breadcrumb__current {
+  color: var(--color-text-secondary);
+}
+
+/* ─── Product Layout ─── */
+.product-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-3xl);
+  padding-bottom: var(--space-4xl);
+  align-items: flex-start;
+}
+
+.product-layout__right {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.product-detail__material {
+  display: block;
+  margin-top: var(--space-md);
+}
+
+.product-detail__name {
+  font-size: var(--text-3xl);
+  line-height: 1.15;
+  margin-top: var(--space-sm);
+}
+
+.product-detail__price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--space-md);
+}
+
+.product-detail__price {
+  font-size: var(--text-2xl);
+}
+
+.product-detail__desc {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-top: var(--space-md);
+}
+
+/* ─── Specs Table ─── */
+.product-detail__specs {
+  margin-top: var(--space-xl);
+}
+
+.product-detail__specs .eyebrow {
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specs-table td {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.specs-table td:first-child {
+  color: var(--color-text-tertiary);
+  width: 35%;
+  font-weight: 500;
+}
+
+.specs-table td:last-child {
+  color: var(--color-text-primary);
+}
+
+/* ─── Variants ─── */
+.product-detail__variants {
+  margin-top: var(--space-xl);
+}
+
+.product-detail__variants .eyebrow {
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.variant-chips {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.variant-chip {
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.variant-chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.variant-chip--active {
+  border-color: var(--color-accent);
+  background: var(--color-accent-muted);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ─── CTAs ─── */
+.product-detail__ctas {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.product-detail__cta-primary {
+  flex: 1;
+}
+
+/* ─── Trust Badges ─── */
+.product-detail__trust {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.trust-badge {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* ─── Related ─── */
+.related-section {
+  background: var(--color-bg-secondary);
+}
+
+.related-section__heading {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+/* ─── Not Found ─── */
+.not-found {
+  padding-top: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  min-height: 60vh;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .product-layout__right {
+    position: static;
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-detail__ctas {
+    flex-direction: column;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+}

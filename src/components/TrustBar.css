@@ -1,0 +1,38 @@
+.trust-bar {
+  overflow: hidden;
+  background: var(--color-accent-muted);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-lg) 0;
+  position: relative;
+}
+
+.trust-bar__track {
+  gap: var(--space-2xl);
+}
+
+.trust-bar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.trust-bar__icon {
+  font-size: 1.2rem;
+}
+
+.trust-bar__text {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+.trust-bar__dot {
+  color: var(--color-accent);
+  font-size: 0.6rem;
+  opacity: 0.5;
+}
