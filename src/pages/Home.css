@@ -87,6 +87,8 @@
 
 .hero__word {
   display: inline-block;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 /* Highlight the last word with accent underline */
