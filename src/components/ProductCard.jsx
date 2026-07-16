@@ -2,12 +2,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PlaceholderImage from './PlaceholderImage';
 import WhatsAppButton from './WhatsAppButton';
-import { BRAND_NAME } from '../data/products';
 import './ProductCard.css';
 
 export default function ProductCard({ product, index = 0 }) {
-  const { slug, name, category, subType, material, price, badge, images } = product;
-  const formattedPrice = new Intl.NumberFormat('en-IN').format(price);
+  const { slug, name, category, subType, material, badge, images } = product;
 
   const badgeClass = badge === 'Best Seller' ? 'badge-bestseller' :
                      badge === 'New' ? 'badge-new' :
@@ -46,13 +44,9 @@ export default function ProductCard({ product, index = 0 }) {
         <Link to={`/product/${slug}`} className="product-card__name font-serif">
           {name}
         </Link>
-        <div className="product-card__price-row">
-          <span className="product-card__price price">₹{formattedPrice}</span>
-          <span className="price-starting">Starting from</span>
-        </div>
         <div className="product-card__actions">
           <WhatsAppButton
-            message={`Hi, I'm interested in ${name} (₹${formattedPrice}). Can you share more details?`}
+            message={`Hi, I'm interested in ${name}. Can you share more details?`}
             className="product-card__enquire"
           >
             Enquire Now

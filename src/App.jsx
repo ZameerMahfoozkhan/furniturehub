@@ -12,6 +12,7 @@ import ProductDetail from './pages/ProductDetail';
 import CustomFurniture from './pages/CustomFurniture';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import BulkOrders from './pages/BulkOrders';
 import './App.css';
 
 function ScrollToTop() {
@@ -42,6 +43,7 @@ function AnimatedRoutes() {
           <Route path="/custom-furniture" element={<CustomFurniture />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/bulk-orders" element={<BulkOrders />} />
         </Routes>
         <Footer />
       </motion.div>

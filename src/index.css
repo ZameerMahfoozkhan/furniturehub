@@ -86,61 +86,61 @@ html {
   --container-xl: 1200px;
   --container-2xl: 1400px;
 
-  /* ─── Default / Premium Palette ─── */
-  --color-bg-primary: #0F0A07;
-  --color-bg-secondary: #1A1410;
-  --color-bg-tertiary: #241C14;
-  --color-bg-card: #1E1712;
-  --color-bg-elevated: #2B2018;
+  /* ─── Default / Budget Palette (site-wide base) ─── */
+  --color-bg-primary: #FBF6EF;
+  --color-bg-secondary: #F5EFE5;
+  --color-bg-tertiary: #EDE4D8;
+  --color-bg-card: #FFFFFF;
+  --color-bg-elevated: #FFFFFF;
 
-  --color-text-primary: #F5F0E8;
-  --color-text-secondary: #C4B9A8;
+  --color-text-primary: #2B2320;
+  --color-text-secondary: #5C4E3C;
   --color-text-tertiary: #8A7D6B;
-  --color-text-inverse: #0F0A07;
+  --color-text-inverse: #F5F0E8;
 
-  --color-accent: #C6A96C;
-  --color-accent-hover: #D4BC82;
-  --color-accent-muted: rgba(198, 169, 108, 0.15);
+  --color-accent: #C1603F;
+  --color-accent-hover: #A84E30;
+  --color-accent-muted: rgba(193, 96, 63, 0.10);
 
-  --color-border: rgba(198, 169, 108, 0.12);
-  --color-border-strong: rgba(198, 169, 108, 0.25);
+  --color-border: rgba(43, 35, 32, 0.10);
+  --color-border-strong: rgba(43, 35, 32, 0.20);
 
-  --color-surface-glass: rgba(15, 10, 7, 0.7);
-  --color-overlay: rgba(15, 10, 7, 0.85);
+  --color-surface-glass: rgba(251, 246, 239, 0.85);
+  --color-overlay: rgba(251, 246, 239, 0.90);
 
   /* Gradient accents */
-  --gradient-premium: linear-gradient(135deg, #C6A96C 0%, #8B7340 100%);
-  --gradient-hero: linear-gradient(180deg, rgba(15,10,7,0) 0%, rgba(15,10,7,0.9) 100%);
+  --gradient-premium: linear-gradient(135deg, #C1603F 0%, #8B4426 100%);
+  --gradient-hero: linear-gradient(180deg, rgba(251,246,239,0) 0%, rgba(251,246,239,0.95) 100%);
 
   /* Wood grain texture (SVG-based) */
   --texture-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
-/* ─── Budget Palette Override ─── */
-[data-theme="budget"] {
-  --color-bg-primary: #FDF8F3;
-  --color-bg-secondary: #F7F0E7;
-  --color-bg-tertiary: #EDE4D8;
-  --color-bg-card: #FFFFFF;
-  --color-bg-elevated: #FFFFFF;
+/* ─── Premium Palette Override ─── */
+[data-theme="premium"] {
+  --color-bg-primary: #F3EAD9;
+  --color-bg-secondary: #ECE0CC;
+  --color-bg-tertiary: #E2D5BF;
+  --color-bg-card: #FAF5EC;
+  --color-bg-elevated: #FAF5EC;
 
-  --color-text-primary: #2C2418;
-  --color-text-secondary: #5C4E3C;
+  --color-text-primary: #4A2E1F;
+  --color-text-secondary: #6B5040;
   --color-text-tertiary: #8A7D6B;
   --color-text-inverse: #F5F0E8;
 
-  --color-accent: #C2633A;
-  --color-accent-hover: #A5502D;
-  --color-accent-muted: rgba(194, 99, 58, 0.1);
+  --color-accent: #A9784F;
+  --color-accent-hover: #8F6540;
+  --color-accent-muted: rgba(169, 120, 79, 0.12);
 
-  --color-border: rgba(44, 36, 24, 0.1);
-  --color-border-strong: rgba(44, 36, 24, 0.2);
+  --color-border: rgba(74, 46, 31, 0.12);
+  --color-border-strong: rgba(74, 46, 31, 0.22);
 
-  --color-surface-glass: rgba(253, 248, 243, 0.85);
-  --color-overlay: rgba(253, 248, 243, 0.9);
+  --color-surface-glass: rgba(243, 234, 217, 0.88);
+  --color-overlay: rgba(243, 234, 217, 0.92);
 
-  --gradient-premium: linear-gradient(135deg, #C2633A 0%, #8B4426 100%);
-  --gradient-hero: linear-gradient(180deg, rgba(253,248,243,0) 0%, rgba(253,248,243,0.95) 100%);
+  --gradient-premium: linear-gradient(135deg, #A9784F 0%, #7A5636 100%);
+  --gradient-hero: linear-gradient(180deg, rgba(243,234,217,0) 0%, rgba(243,234,217,0.95) 100%);
 }
 
 /* ─── Body ─── */
@@ -176,7 +176,7 @@ body {
   .custom-cursor.cursor-hover {
     width: 40px;
     height: 40px;
-    background: rgba(198, 169, 108, 0.3);
+    background: rgba(193, 96, 63, 0.3);
     border: 2px solid var(--color-accent);
   }
 
@@ -234,12 +234,12 @@ body {
 
 /* ─── Section Spacing ─── */
 .section {
-  padding: var(--space-5xl) 0;
+  padding: var(--space-3xl) 0;
   position: relative;
 }
 
 .section-sm {
-  padding: var(--space-3xl) 0;
+  padding: var(--space-2xl) 0;
 }
 
 /* ─── Buttons ─── */
@@ -278,7 +278,7 @@ body {
 
 .btn-primary {
   background: var(--gradient-premium);
-  color: #0F0A07;
+  color: #FFFFFF;
 }
 
 .btn-primary:hover {

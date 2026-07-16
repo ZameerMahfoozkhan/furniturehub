@@ -6,13 +6,17 @@
   position: relative;
   padding: 180px 0 100px;
   overflow: hidden;
-  background: linear-gradient(180deg, #0F0A07 0%, #1A1410 100%);
+  background: linear-gradient(180deg, #FBF6EF 0%, #F5EFE5 100%);
 }
 
 .contact-hero__bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, rgba(198, 169, 108, 0.06) 0%, transparent 60%);
+  background-image: 
+    linear-gradient(to right, rgba(251, 246, 239, 0.95) 0%, rgba(251, 246, 239, 0.6) 100%),
+    url('/prmium-home.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .contact-hero__content {
@@ -81,16 +85,19 @@
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
   line-height: 1.6;
+  flex-grow: 1;
 }
 
 .contact-card__value {
   font-weight: 600;
   color: var(--color-accent);
   font-size: var(--text-base);
+  margin-top: auto;
 }
 
 .contact-card__btn {
   margin-top: var(--space-sm);
+  width: 100%;
 }
 
 /* ─── Contact Details ─── */

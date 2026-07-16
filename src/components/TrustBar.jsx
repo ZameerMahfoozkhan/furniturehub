@@ -1,9 +1,10 @@
 import './TrustBar.css';
+import WhatsAppIcon from './WhatsAppIcon';
 
 const trustItems = [
   { icon: '🚚', text: 'Pan India Delivery' },
   { icon: '🪵', text: 'Handcrafted Quality' },
-  { icon: '💬', text: 'WhatsApp Support' },
+  { icon: <WhatsAppIcon size={20} fill="#25D366" />, text: 'WhatsApp Support' },
   { icon: '🏆', text: '15+ Years of Craftsmanship' },
   { icon: '🛡️', text: 'Quality Assured' },
   { icon: '🏠', text: '2500+ Happy Homes' },

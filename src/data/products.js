@@ -4,7 +4,7 @@
 export const WHATSAPP_NUMBER = '919580659559';
 export const EMAIL = 'furniturehubayodhya@gmail.com';
 export const BRAND_NAME = 'Furniture Hub Ayodhya';
-export const TAGLINE = 'Timeless Craftsmanship. Delivered Across India.';
+export const TAGLINE = 'Smart, Sturdy, Good-Looking Furniture — Delivered Anywhere in India.';
 export const PHONE_DISPLAY = '+91 95806 59559';
 
 export const products = [
@@ -53,7 +53,7 @@ export const products = [
       warranty: '8 Year Warranty',
     },
     images: [
-      { label: 'Full Set View' },
+      { label: 'Full Set View', src: '/premium_product.png' },
       { label: 'Table Top Detail' },
       { label: 'Chair Close-up' },
       { label: 'Lifestyle Setting' },
@@ -301,8 +301,123 @@ export const products = [
   },
 
   // ═══════════════════════════════════════════
-  //  BUDGET RANGE — Plywood / Engineered Wood
+  // ─── BUDGET RANGE — Engineered Wood / Particle Board ───
   // ═══════════════════════════════════════════
+  {
+    id: 'b-exec-desk',
+    slug: 'executive-office-desk',
+    name: 'Executive Office Desk',
+    category: 'budget',
+    subType: 'table',
+    material: 'Engineered Wood / Particle Board',
+    dimensions: 'Spacious work surface',
+    finish: 'Premium wood-grain finish',
+    warranty: '1 Year Warranty',
+    description: 'Upgrade your workspace with this modern wooden office desk, designed to combine style, functionality, and durability. Featuring a spacious tabletop, an open storage shelf for books and office essentials, a smooth-glide drawer, and a lockable cabinet, this desk keeps your workspace organized and clutter-free. Crafted from high-quality engineered wood with a premium wood-grain finish, it is built for everyday use in offices, home workspaces, study rooms, and commercial environments.',
+    specs: {
+      dimensions: 'Spacious work surface',
+      finish: 'Premium wood-grain finish',
+      deliveryEstimate: '5-8 Business Days',
+      warranty: '1 Year Warranty',
+    },
+    images: [
+      { label: 'Front View', src: '/Executive Office Desk-front.jpeg' },
+      { label: 'Side View', src: '/Executive Office Desk-side.jpeg' },
+      { label: 'Zoom View', src: '/Executive Office Desk-zoom.jpeg' },
+    ]
+  },
+  {
+    id: 'b-vanity',
+    slug: 'luxury-bathroom-vanity-unit',
+    name: 'Luxury Bathroom Vanity Unit',
+    category: 'budget',
+    subType: 'vanity',
+    material: 'Moisture-Resistant Engineered Wood',
+    dimensions: 'Compact & spacious',
+    finish: 'Marble-pattern & Gold accents',
+    warranty: '1 Year Warranty',
+    description: 'Elevate your bathroom with this premium vanity unit, designed to blend modern elegance with everyday functionality. Featuring a sleek ceramic wash basin, a stylish black-and-white marble-pattern cabinet, and elegant gold accents, this vanity adds a sophisticated touch to any bathroom. The spacious storage compartments help keep toiletries, cleaning essentials, and personal care items neatly organized while maintaining a clutter-free space.',
+    specs: {
+      dimensions: 'Compact & spacious',
+      finish: 'Marble-pattern & Gold accents',
+      deliveryEstimate: '5-8 Business Days',
+      warranty: '1 Year Warranty',
+    },
+    images: [
+      { label: 'View 1', src: '/Luxury Bathroom Vanity Unit-1.jpeg' },
+      { label: 'View 2', src: '/Luxury Bathroom Vanity Unit-2.jpeg' },
+      { label: 'View 3', src: '/Luxury Bathroom Vanity Unit-3.jpeg' },
+    ]
+  },
+  {
+    id: 'b-wardrobe-3d',
+    slug: '3-door-wooden-wardrobe',
+    name: '3-Door Wooden Wardrobe',
+    category: 'budget',
+    subType: 'wardrobe',
+    material: 'Engineered Wood / Particle Board',
+    dimensions: 'Spacious 3-door design',
+    finish: 'Wood-grain finish',
+    warranty: '2 Year Warranty',
+    description: 'Organize your belongings in style with this spacious 3-door wooden wardrobe, designed for modern homes. Featuring a durable wood-grain finish, multiple storage shelves, and a dedicated hanging section, this wardrobe offers the perfect combination of functionality and elegance. Its sturdy construction and lockable doors ensure your clothes, accessories, and essentials remain safe, organized, and easily accessible.',
+    specs: {
+      dimensions: 'Spacious 3-door design',
+      finish: 'Wood-grain finish',
+      deliveryEstimate: '5-8 Business Days',
+      warranty: '2 Year Warranty',
+    },
+    images: [
+      { label: 'Closed View', src: '/3-Door Wooden Wardrobe-side.jpeg' },
+      { label: 'One Door Open', src: '/3-Door Wooden Wardrobe-one-door-open.jpeg' },
+      { label: 'Open View', src: '/3-Door Wooden Wardrobe-open.jpeg' },
+      { label: 'Lock Detail', src: '/3-Door Wooden Wardrobe-zoom-lock.jpeg' },
+    ]
+  },
+  {
+    id: 'b-tv-unit',
+    slug: 'modern-wall-mounted-tv-unit',
+    name: 'Modern Wall-Mounted TV Unit',
+    category: 'budget',
+    subType: 'tv-unit',
+    material: 'Engineered Wood / Particle Board',
+    dimensions: 'Space-saving floating design',
+    finish: 'Premium wood finish',
+    warranty: '1 Year Warranty',
+    description: 'Enhance your living space with this sleek and contemporary wall-mounted TV unit, designed to combine elegance with practical storage. Featuring a floating entertainment shelf, an upper display ledge, and open compartments for media devices, this unit offers a clean, clutter-free look while maximizing space. Its premium wood finish and minimalist design make it a perfect addition to modern homes.',
+    specs: {
+      dimensions: 'Space-saving floating design',
+      finish: 'Premium wood finish',
+      deliveryEstimate: '5-8 Business Days',
+      warranty: '1 Year Warranty',
+    },
+    images: [
+      { label: 'Front View', src: '/Modern Wall-Mounted TV Unit-front.jpeg' },
+      { label: 'Side View', src: '/Modern Wall-Mounted TV Unit-side.jpeg' },
+    ]
+  },
+  {
+    id: 'b-shoe-rack',
+    slug: 'modern-wooden-shoe-rack-cabinet',
+    name: 'Modern Wooden Shoe Rack Cabinet',
+    category: 'budget',
+    subType: 'shoe-rack',
+    material: 'Engineered Wood / Particle Board',
+    dimensions: 'Compact space-saving design',
+    finish: 'Wood-grain finish',
+    warranty: '1 Year Warranty',
+    description: 'Keep your footwear neatly organized with this stylish and space-saving wooden shoe rack cabinet. Designed with a modern wood-grain finish, this cabinet features multiple spacious shelves to store shoes, sandals, slippers, and other essentials while keeping them dust-free. Its compact design makes it a perfect storage solution for entryways, bedrooms, hallways, and apartments.',
+    specs: {
+      dimensions: 'Compact space-saving design',
+      finish: 'Wood-grain finish',
+      deliveryEstimate: '5-8 Business Days',
+      warranty: '1 Year Warranty',
+    },
+    images: [
+      { label: 'Front View', src: '/Modern Wooden Shoe Rack Cabinet-front.jpeg' },
+      { label: 'Open View', src: '/Modern Wooden Shoe Rack Cabinet-open.jpeg' },
+      { label: 'Side View', src: '/Modern Wooden Shoe Rack Cabinet-side.jpeg' },
+    ]
+  },
   {
     id: 'b1',
     slug: 'engineered-wood-3-door-wardrobe',
@@ -321,7 +436,7 @@ export const products = [
       warranty: '2 Year Warranty',
     },
     images: [
-      { label: 'Front View' },
+      { label: 'Front View', src: '/budget_product.png' },
       { label: 'Interior' },
       { label: 'Mirror Door' },
       { label: 'Hinge Detail' },
@@ -329,15 +444,17 @@ export const products = [
   },
   {
     id: 'b2',
-    slug: 'plywood-study-table-with-drawer',
-    name: 'Plywood Study Table with Drawer',
+    slug: 'engineered-wood-study-table-with-drawer',
+    name: 'Engineered Wood Study Table with Drawer',
     category: 'budget',
     subType: 'table',
-    material: 'Plywood',
-    finish: 'Oak Laminate',
-    price: 5499,
-    badge: 'Great Value',
-    description: 'A clean, minimalist study table that fits tight spaces without compromising on workspace. The pull-out drawer keeps stationery tidy, and the sturdy plywood build handles daily use with ease.',
+    price: 3800,
+    originalPrice: 4500,
+    material: 'Engineered Wood / Particle Board',
+    dimensions: 'L 36" x W 20" x H 30"',
+    finish: 'Teak Laminate',
+    warranty: '1 Year Warranty',
+    description: 'A clean, minimalist study table that fits tight spaces without compromising on workspace. The pull-out drawer keeps stationery tidy, and the sturdy engineered wood build handles daily use with ease.',
     specs: {
       dimensions: '36" × 20" × 30" (L × D × H)',
       finish: 'Oak Laminate',
@@ -381,11 +498,11 @@ export const products = [
     name: 'Ply Board Bunk Bed',
     category: 'budget',
     subType: 'bed',
-    material: 'Plywood',
+    material: 'Engineered Wood / Particle Board',
+    dimensions: 'L 78" x W 38" x H 65"',
     finish: 'Maple Laminate',
-    price: 15800,
-    badge: null,
-    description: 'Space-saving and kid-friendly, this bunk bed is built from high-grade plywood with rounded safety rails. Maple laminate gives it a light, airy look that works in compact bedrooms.',
+    warranty: '2 Year Warranty',
+    description: 'Space-saving and kid-friendly, this bunk bed is built from high-grade engineered wood with rounded safety rails. Maple laminate gives it a light, airy look that works in compact bedrooms.',
     specs: {
       dimensions: '78" × 36" × 60" per bunk (L × W × H)',
       finish: 'Maple Laminate',
@@ -449,13 +566,14 @@ export const products = [
   },
   {
     id: 'b7',
-    slug: 'plywood-bookshelf-with-cabinet',
-    name: 'Plywood Bookshelf with Cabinet',
+    slug: 'engineered-wood-bookshelf-with-cabinet',
+    name: 'Engineered Wood Bookshelf with Cabinet',
     category: 'budget',
     subType: 'bookshelf',
-    material: 'Plywood',
+    price: 5200,
+    originalPrice: 6500,
+    material: 'Engineered Wood / Particle Board',
     finish: 'Teak Laminate',
-    price: 6800,
     badge: null,
     description: 'Open shelves on top for display, closed cabinets at the bottom for storage — this bookshelf does double duty. Teak laminate finish gives it the look of solid wood at a fraction of the price.',
     specs: {
@@ -501,7 +619,7 @@ export const products = [
     name: 'Ply Board Wardrobe with Mirror',
     category: 'budget',
     subType: 'wardrobe',
-    material: 'Plywood',
+    material: 'Engineered Wood / Particle Board',
     finish: 'Walnut Laminate',
     price: 14200,
     badge: null,

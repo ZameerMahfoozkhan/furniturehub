@@ -42,9 +42,10 @@ export default function Footer() {
             <h4 className="footer__heading eyebrow">Quick Links</h4>
             <ul className="footer__links">
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/premium">Premium Range</Link></li>
               <li><Link to="/budget">Budget Range</Link></li>
+              <li><Link to="/premium">Premium Range</Link></li>
               <li><Link to="/custom-furniture">Custom Furniture</Link></li>
+              <li><Link to="/bulk-orders">Bulk Orders</Link></li>
               <li><Link to="/about">Our Story</Link></li>
               <li><Link to="/contact">Contact</Link></li>
             </ul>

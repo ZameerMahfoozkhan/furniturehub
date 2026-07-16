@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedSection from '../components/AnimatedSection';
 import WhatsAppButton from '../components/WhatsAppButton';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 import { BRAND_NAME, EMAIL, PHONE_DISPLAY, WHATSAPP_NUMBER } from '../data/products';
 import './Contact.css';
 
@@ -45,7 +46,9 @@ export default function Contact() {
           <div className="contact-grid">
             {/* WhatsApp */}
             <AnimatedSection delay={0.1} className="contact-card contact-card--whatsapp">
-              <div className="contact-card__icon">💬</div>
+              <div className="contact-card__icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <WhatsAppIcon size={40} fill="#25D366" />
+              </div>
               <h3 className="contact-card__title font-serif">WhatsApp</h3>
               <p className="contact-card__desc">
                 The fastest way to reach us. Send a message and we'll respond within minutes during business hours.
@@ -72,6 +75,9 @@ export default function Contact() {
               <a href={`tel:+919580659559`} className="contact-card__value">
                 {PHONE_DISPLAY}
               </a>
+              <a href={`tel:+919580659559`} className="btn btn-primary contact-card__btn">
+                Call Us Now
+              </a>
             </AnimatedSection>
 
             {/* Email */}
@@ -83,6 +89,9 @@ export default function Contact() {
               </p>
               <a href={`mailto:${EMAIL}`} className="contact-card__value">
                 {EMAIL}
+              </a>
+              <a href={`mailto:${EMAIL}`} className="btn btn-primary contact-card__btn">
+                Send an Email
               </a>
             </AnimatedSection>
           </div>

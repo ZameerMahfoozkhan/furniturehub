@@ -22,13 +22,12 @@ export default function Budget() {
     let result = [...budgetProducts];
     if (finishFilter !== 'All') result = result.filter(p => p.finish === finishFilter);
     if (typeFilter !== 'All') result = result.filter(p => p.subType === typeFilter);
-    if (sortBy === 'price-low') result.sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-high') result.sort((a, b) => b.price - a.price);
+
     return result;
-  }, [finishFilter, typeFilter, sortBy]);
+  }, [finishFilter, typeFilter]);
 
   return (
-    <div className="range-page range-page--budget" data-theme="budget">
+    <div className="range-page range-page--budget">
       {/* Hero */}
       <section className="range-hero range-hero--budget">
         <div className="range-hero__bg" />
@@ -50,8 +49,8 @@ export default function Budget() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            Modern engineered wood & plywood furniture with premium laminate finishes.
-            Great design doesn't have to cost a fortune.
+            Modern engineered wood & particle board furniture with premium laminate finishes.
+            Smart design that fits your space and your wallet.
           </motion.p>
         </div>
       </section>
@@ -91,8 +90,7 @@ export default function Budget() {
             <label className="filter-label eyebrow">Sort</label>
             <select className="filter-select" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
               <option value="default">Default</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
+
             </select>
           </div>
         </div>

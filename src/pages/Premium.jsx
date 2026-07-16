@@ -22,13 +22,12 @@ export default function Premium() {
     let result = [...premiumProducts];
     if (woodFilter !== 'All') result = result.filter(p => p.woodType === woodFilter);
     if (typeFilter !== 'All') result = result.filter(p => p.subType === typeFilter);
-    if (sortBy === 'price-low') result.sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-high') result.sort((a, b) => b.price - a.price);
+
     return result;
-  }, [woodFilter, typeFilter, sortBy]);
+  }, [woodFilter, typeFilter]);
 
   return (
-    <div className="range-page range-page--premium">
+    <div className="range-page range-page--premium" data-theme="premium">
       {/* Hero */}
       <section className="range-hero range-hero--premium wood-texture">
         <div className="range-hero__bg" />
@@ -91,8 +90,7 @@ export default function Premium() {
             <label className="filter-label eyebrow">Sort</label>
             <select className="filter-select" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
               <option value="default">Default</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
+
             </select>
           </div>
         </div>

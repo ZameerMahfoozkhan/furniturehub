@@ -14,13 +14,13 @@
 .placeholder-image--premium {
   background: linear-gradient(
     145deg,
-    #2B1B12 0%,
-    #3D2A1A 30%,
-    #4A3322 50%,
-    #3D2A1A 70%,
-    #2B1B12 100%
+    #ECE0CC 0%,
+    #E2D5BF 30%,
+    #D9CCBA 50%,
+    #E2D5BF 70%,
+    #ECE0CC 100%
   );
-  color: #C6A96C;
+  color: #A9784F;
 }
 
 .placeholder-image--budget {

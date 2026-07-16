@@ -43,7 +43,7 @@ const faqs = [
   },
   {
     q: 'What materials can I choose from?',
-    a: 'For solid wood: Sheesham, Teak, Mango Wood, and Rosewood. For budget pieces: high-quality plywood and engineered wood with a variety of laminate finishes.',
+    a: 'For solid wood: Sheesham, Teak, Mango Wood, and Rosewood. For budget pieces: high-quality engineered wood and particle board with a variety of laminate finishes.',
   },
   {
     q: 'Do you require a deposit?',
@@ -159,17 +159,28 @@ export default function CustomFurniture() {
 
           <StaggerContainer className="gallery-grid" staggerDelay={0.08}>
             {[
-              'Custom Sheesham Bookshelf',
-              'Bespoke Dining Table',
-              'Handmade Console Table',
-              'Custom Wardrobe Design',
-              'Unique Coffee Table',
-              'Made-to-Order Study Desk',
-            ].map((title, i) => (
+              {
+                title: 'Bespoke Dining Table',
+                src: '/custom_furniture_1.png'
+              },
+              {
+                title: 'Custom Wardrobe Design',
+                src: '/custom_furniture_2.png'
+              },
+              {
+                title: 'Made-to-Order Headboard',
+                src: '/custom_furniture_3.png'
+              }
+            ].map((item, i) => (
               <motion.div key={i} className="gallery-item" variants={staggerItem}>
-                <div className="gallery-placeholder">
-                  <span className="font-serif">{title}</span>
-                  <span className="eyebrow">Custom Piece</span>
+                <div 
+                  className="gallery-image"
+                  style={{ backgroundImage: `url(${item.src})` }}
+                >
+                  <div className="gallery-image__overlay">
+                    <span className="font-serif">{item.title}</span>
+                    <span className="eyebrow">Custom Piece</span>
+                  </div>
                 </div>
               </motion.div>
             ))}

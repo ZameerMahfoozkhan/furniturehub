@@ -15,7 +15,7 @@ const milestones = [
 ];
 
 const values = [
-  { icon: '🪵', title: 'Material Honesty', desc: 'We never mislead about what goes into our furniture. Solid wood means solid wood. Plywood is described as plywood. Transparency builds trust.' },
+  { icon: '🪵', title: 'Material Honesty', desc: 'We never mislead about what goes into our furniture. Solid wood means solid wood. Engineered wood is described as engineered wood. Transparency builds trust.' },
   { icon: '🤲', title: 'Artisan-First', desc: 'Our craftsmen are the heart of this brand. Fair wages, safe working conditions, and respect for their generational skills — always.' },
   { icon: '💰', title: 'Honest Pricing', desc: 'No middleman markups. Factory-to-home pricing on both our premium and budget ranges. You pay for quality, not overhead.' },
   { icon: '🌍', title: 'Accessible Quality', desc: "We believe every home in India deserves well-made furniture. That's why we offer two ranges — for every lifestyle and budget." },
@@ -81,7 +81,7 @@ export default function About() {
             </AnimatedSection>
             <AnimatedSection direction="right" className="brand-story__visual">
               <div className="brand-story__img">
-                <div className="brand-story__placeholder" style={{ background: 'linear-gradient(rgba(15, 10, 7, 0.4), rgba(15, 10, 7, 0.8)), url(/Artisan-at-Work.png) center/cover' }}>
+                <div className="brand-story__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Artisan-at-Work.png) center/cover' }}>
                   <span className="font-serif">Our Workshop</span>
                   <span className="eyebrow">Ayodhya, UP</span>
                 </div>

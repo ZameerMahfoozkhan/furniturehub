@@ -6,6 +6,7 @@ import TrustBar from '../components/TrustBar';
 import ProductCard from '../components/ProductCard';
 import CountUp from '../components/CountUp';
 import WhatsAppButton from '../components/WhatsAppButton';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 import { products, testimonials, trustStats, BRAND_NAME, TAGLINE } from '../data/products';
 import './Home.css';
 
@@ -15,8 +16,8 @@ export default function Home() {
   }, []);
 
   const featuredProducts = [
-    ...products.filter(p => p.category === 'premium').slice(0, 3),
-    ...products.filter(p => p.category === 'budget').slice(0, 3),
+    ...products.filter(p => p.category === 'budget').slice(0, 5),
+    ...products.filter(p => p.category === 'premium').slice(0, 2),
   ];
 
   // Double testimonials for marquee
@@ -25,7 +26,7 @@ export default function Home() {
   return (
     <div className="home">
       {/* ─── Hero ─── */}
-      <section className="hero wood-texture">
+      <section className="hero">
         <div className="hero__bg" />
         <div className="hero__content container">
           <motion.span
@@ -34,17 +35,17 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Rooted in Ayodhya · Delivered Across India
+            Crafted in Ayodhya · Delivered Across India
           </motion.span>
 
           <h1 className="hero__title font-serif">
-            {['Timeless', 'Craftsmanship.', 'Delivered', 'Across', 'India.'].map((word, i) => (
+            {['Smart.', 'Sturdy.', 'Beautiful.', 'Furniture.'].map((word, i) => (
               <motion.span
                 key={i}
                 className="hero__word"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ delay: 0.3 + i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
                 {word}{' '}
               </motion.span>
@@ -57,8 +58,8 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            From heirloom solid wood masterpieces to smart, affordable engineered furniture —
-            crafted in Ayodhya, shipped to your doorstep anywhere in India.
+            Durable, well-designed furniture at prices that make sense — shipped
+            to your doorstep anywhere in India. Looking for solid wood? We do that too.
           </motion.p>
 
           <motion.div
@@ -67,15 +68,32 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            <Link to="/premium" className="btn btn-primary btn-lg">Explore Premium Wood</Link>
-            <Link to="/budget" className="btn btn-secondary btn-lg">Explore Budget Range</Link>
+            <Link to="/budget" className="btn btn-primary btn-lg">Explore Budget Range</Link>
+            <Link to="/premium" className="btn btn-secondary btn-lg">Explore Premium Wood →</Link>
+          </motion.div>
+
+          <motion.div
+            className="hero__trust-pills"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.3, duration: 0.6 }}
+          >
+            <span className="hero__trust-pill">
+              <span className="hero__trust-pill-icon">🚚</span> Pan India Delivery
+            </span>
+            <span className="hero__trust-pill">
+              <span className="hero__trust-pill-icon">🏠</span> 2,500+ Happy Homes
+            </span>
+            <span className="hero__trust-pill">
+              <span className="hero__trust-pill-icon" style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: '6px' }}><WhatsAppIcon size={16} fill="#25D366" /></span> WhatsApp Support
+            </span>
           </motion.div>
 
           <motion.div
             className="hero__scroll"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
+            transition={{ delay: 1.8 }}
           >
             <span>Scroll to explore</span>
             <div className="hero__scroll-line" />
@@ -98,27 +116,28 @@ export default function Home() {
 
           <div className="range-split__panels">
             <AnimatedSection delay={0.1} direction="left">
-              <Link to="/premium" className="range-panel range-panel--premium wood-texture">
+              <Link to="/budget" className="range-panel range-panel--budget">
                 <div className="range-panel__content">
-                  <span className="eyebrow">Handcrafted Heirloom Quality</span>
-                  <h3 className="font-serif range-panel__title">Premium Wood Collection</h3>
+                  <span className="range-panel__specialty-badge">★ Our Specialty</span>
+                  <span className="eyebrow">Smart Design, Honest Price</span>
+                  <h3 className="font-serif range-panel__title">Budget Range</h3>
                   <p className="range-panel__desc">
-                    Solid Sheesham, Teak, Mango Wood & Rosewood — crafted by artisans, built to last generations.
+                    Durable engineered wood & particle board furniture with modern laminate finishes — designed for everyday living. Great quality, honest prices.
                   </p>
-                  <span className="btn btn-primary">Explore Premium →</span>
+                  <span className="btn btn-primary">Explore Budget Range →</span>
                 </div>
               </Link>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2} direction="right">
-              <Link to="/budget" className="range-panel range-panel--budget">
+              <Link to="/premium" className="range-panel range-panel--premium wood-texture">
                 <div className="range-panel__content">
-                  <span className="eyebrow">Smart Design, Honest Price</span>
-                  <h3 className="font-serif range-panel__title">Budget Range</h3>
+                  <span className="eyebrow">For Those Who Want to Go Further</span>
+                  <h3 className="font-serif range-panel__title">Premium Wood Collection</h3>
                   <p className="range-panel__desc">
-                    Durable engineered wood & plywood furniture with modern laminate finishes — designed for everyday living.
+                    Solid Sheesham, Teak, Mango Wood & Rosewood — crafted by artisans, built to last generations.
                   </p>
-                  <span className="btn btn-primary">Explore Budget →</span>
+                  <span className="btn btn-secondary">Explore Premium →</span>
                 </div>
               </Link>
             </AnimatedSection>
@@ -143,8 +162,8 @@ export default function Home() {
           </StaggerContainer>
 
           <AnimatedSection className="featured__cta-wrap">
+            <Link to="/budget" className="btn btn-primary">View All Budget Range</Link>
             <Link to="/premium" className="btn btn-secondary">View All Premium</Link>
-            <Link to="/budget" className="btn btn-secondary">View All Budget</Link>
           </AnimatedSection>
         </div>
       </section>
@@ -162,7 +181,7 @@ export default function Home() {
           <StaggerContainer className="why-us__grid" staggerDelay={0.08}>
             {[
               { icon: '🪵', title: 'Solid Wood Sourcing', desc: 'Premium Sheesham, Teak, Mango & Rosewood — handpicked for grain quality and durability from trusted sources.' },
-              { icon: '🏗️', title: 'ISI-Grade Plywood', desc: 'Our budget range uses only ISI-certified engineered wood with high-quality laminate finishes built for daily use.' },
+              { icon: '🏗️', title: 'High-Grade Engineered Wood', desc: 'Our budget range uses only ISI-certified engineered wood with high-quality laminate finishes built for daily use.' },
               { icon: '🚚', title: 'Pan-India Logistics', desc: 'From Ayodhya to every corner of India. Carefully packaged and delivered to your doorstep, wherever you are.' },
               { icon: '🤲', title: 'Handcrafted by Artisans', desc: 'Every piece passes through the hands of skilled craftsmen in Ayodhya, continuing a legacy of woodworking excellence.' },
               { icon: '✏️', title: 'Custom Orders Welcome', desc: "Have a unique design in mind? Share a photo on WhatsApp and we'll build it exactly to your specifications." },
@@ -199,19 +218,20 @@ export default function Home() {
         <div className="container">
           <div className="craftsmanship__layout">
             <AnimatedSection direction="left" className="craftsmanship__text">
-              <span className="eyebrow">Our Heritage</span>
+              <span className="eyebrow">Built for Real Homes</span>
               <h2 className="font-serif craftsmanship__title">
                 Born in Ayodhya.<br />Built for India.
               </h2>
               <p>
-                Ayodhya's tradition of woodworking goes back centuries. At Furniture Hub, we carry
-                forward this legacy — combining time-honoured joinery techniques with modern design
-                sensibilities to create furniture that belongs in contemporary Indian homes.
+                At Furniture Hub, we believe great furniture shouldn't cost a fortune. Our Budget
+                Range is designed with the same care and attention as our solid wood pieces —
+                using ISI-certified engineered wood and premium laminate finishes that are built
+                to handle real life, every day.
               </p>
               <p>
-                Every piece of solid wood in our Premium range is hand-selected, seasoned naturally,
-                and shaped by artisans who have inherited their craft through generations. Our Budget
-                range brings the same design integrity to engineered wood — smart, durable, and honestly priced.
+                For those who want to go further, our Premium Range carries forward Ayodhya's
+                centuries-old woodworking tradition — every piece hand-selected, naturally seasoned,
+                and shaped by artisans who have inherited their craft through generations.
               </p>
               <p>
                 From our workshop in Ayodhya to your living room in Mumbai, Bengaluru, Delhi, or
@@ -222,13 +242,13 @@ export default function Home() {
             <AnimatedSection direction="right" className="craftsmanship__visual">
               <div className="craftsmanship__image-stack">
                 <div className="craftsmanship__img craftsmanship__img--1">
-                  <div className="craftsmanship__placeholder" style={{ background: 'linear-gradient(rgba(15, 10, 7, 0.4), rgba(15, 10, 7, 0.8)), url(/Artisan-at-Work.png) center/cover' }}>
+                  <div className="craftsmanship__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Artisan-at-Work.png) center/cover' }}>
                     <span className="font-serif">Artisan at Work</span>
                     <span className="eyebrow">Heritage Craftsmanship</span>
                   </div>
                 </div>
                 <div className="craftsmanship__img craftsmanship__img--2">
-                  <div className="craftsmanship__placeholder" style={{ background: 'linear-gradient(rgba(15, 10, 7, 0.4), rgba(15, 10, 7, 0.8)), url(/Wood-Selection.png) center/cover' }}>
+                  <div className="craftsmanship__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Wood-Selection.png) center/cover' }}>
                     <span className="font-serif">Wood Selection</span>
                     <span className="eyebrow">Raw Materials</span>
                   </div>

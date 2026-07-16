@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import AnimatedSection, { StaggerContainer, staggerItem } from '../components/AnimatedSection';
+import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import ImageCarousel from '../components/ImageCarousel';
 import ProductCard from '../components/ProductCard';
 import WhatsAppButton from '../components/WhatsAppButton';
@@ -33,10 +32,10 @@ export default function ProductDetail() {
     );
   }
 
-  const formattedPrice = new Intl.NumberFormat('en-IN').format(product.price);
+
   const related = getRelatedProducts(product);
   const isPremium = product.category === 'premium';
-  const categoryLabel = isPremium ? 'Premium Wood' : 'Budget Plywood';
+  const categoryLabel = isPremium ? 'Premium Wood' : 'Engineered Wood';
   const categoryPath = isPremium ? '/premium' : '/budget';
 
   // Dummy variants
@@ -45,8 +44,8 @@ export default function ProductDetail() {
     : ['Walnut Laminate', 'Oak Laminate', 'White Matte', 'Beech'];
 
   const whatsappMsg = selectedVariant
-    ? `Hi, I'm interested in ${product.name} (₹${formattedPrice}) in ${selectedVariant} finish. Can you share more details?`
-    : `Hi, I'm interested in ${product.name} (₹${formattedPrice}). Can you share more details?`;
+    ? `Hi, I'm interested in ${product.name} in ${selectedVariant} finish. Can you share more details?`
+    : `Hi, I'm interested in ${product.name}. Can you share more details?`;
 
   return (
     <div className={`product-detail ${isPremium ? '' : 'product-detail--budget'}`} data-theme={isPremium ? undefined : 'budget'}>
@@ -76,10 +75,7 @@ export default function ProductDetail() {
             <span className="eyebrow product-detail__material">{product.material}</span>
             <h1 className="font-serif product-detail__name">{product.name}</h1>
 
-            <div className="product-detail__price-block">
-              <span className="price-starting">Starting from</span>
-              <span className="product-detail__price price font-serif">₹{formattedPrice}</span>
-            </div>
+
 
             <p className="product-detail__desc">{product.description}</p>
 

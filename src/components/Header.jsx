@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BRAND_NAME } from '../data/products';
 import './Header.css';
 
 const navLinks = [
   { path: '/', label: 'Home' },
-  { path: '/premium', label: 'Premium Range' },
   { path: '/budget', label: 'Budget Range' },
+  { path: '/premium', label: 'Premium Range' },
   { path: '/custom-furniture', label: 'Custom Furniture' },
+  { path: '/bulk-orders', label: 'Bulk Orders' },
   { path: '/about', label: 'About' },
   { path: '/contact', label: 'Contact' },
 ];
@@ -43,7 +43,6 @@ export default function Header() {
         <div className="header__inner container">
           <Link to="/" className="header__logo font-serif" aria-label="Home">
             <img src="/logo.png" alt="Furniture Hub Ayodhya Logo" className="header__logo-img" />
-            <span className="header__logo-text">Furniture Hub Ayodhya</span>
           </Link>
 
           <nav className="header__nav" aria-label="Main navigation">
