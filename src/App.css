@@ -1,4 +1,10 @@
 /* App-level layout styles */
+#root {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
 main {
   min-height: 100vh;
 }
