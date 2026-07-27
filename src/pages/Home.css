@@ -253,14 +253,22 @@
   opacity: 0.9;
 }
 
-.range-panel--premium .btn-secondary {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #FFFFFF;
+.range-panel--premium .btn-secondary,
+.range-panel .btn-secondary {
+  background: #FFFFFF;
+  color: #2B2320;
+  border: 1.5px solid #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.range-panel--premium .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #FFFFFF;
+.range-panel--premium .btn-secondary:hover,
+.range-panel .btn-secondary:hover {
+  background: #F5EFE5;
+  color: #1A120F;
+  border-color: #F5EFE5;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
 .range-panel__content {

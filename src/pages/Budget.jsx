@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import ProductCard from '../components/ProductCard';
@@ -10,21 +11,62 @@ const furnitureTypes = ['All', 'bed', 'dining', 'wardrobe', 'table', 'tv-unit', 
 const furnitureLabels = { bed: 'Beds', dining: 'Dining', wardrobe: 'Wardrobes', table: 'Tables', 'tv-unit': 'TV Units', bookshelf: 'Bookshelves', storage: 'Storage' };
 
 export default function Budget() {
-  const [finishFilter, setFinishFilter] = useState('All');
-  const [typeFilter, setTypeFilter] = useState('All');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const currentCategory = searchParams.get('category') || searchParams.get('type') || 'All';
+  const currentFinish = searchParams.get('finish') || 'All';
+
+  const [finishFilter, setFinishFilter] = useState(currentFinish);
+  const [typeFilter, setTypeFilter] = useState(currentCategory);
   const [sortBy, setSortBy] = useState('default');
 
   useEffect(() => {
     document.title = `Budget Furniture Range — Great Design, Honest Price | ${BRAND_NAME}`;
   }, []);
 
+  useEffect(() => {
+    const cat = searchParams.get('category') || searchParams.get('type') || 'All';
+    const finish = searchParams.get('finish') || 'All';
+    setTypeFilter(cat);
+    setFinishFilter(finish);
+  }, [searchParams]);
+
+  const handleFinishFilter = (f) => {
+    setFinishFilter(f);
+    const params = new URLSearchParams(searchParams);
+    if (f === 'All') params.delete('finish');
+    else params.set('finish', f);
+    setSearchParams(params);
+  };
+
+  const handleTypeFilter = (t) => {
+    setTypeFilter(t);
+    const params = new URLSearchParams(searchParams);
+    if (t === 'All') {
+      params.delete('category');
+      params.delete('type');
+    } else {
+      params.set('category', t);
+    }
+    setSearchParams(params);
+  };
+
   const filtered = useMemo(() => {
     let result = [...budgetProducts];
     if (finishFilter !== 'All') result = result.filter(p => p.finish === finishFilter);
     if (typeFilter !== 'All') result = result.filter(p => p.subType === typeFilter);
 
+    if (sortBy === 'low-to-high') result.sort((a, b) => a.price - b.price);
+    if (sortBy === 'high-to-low') result.sort((a, b) => b.price - a.price);
+
     return result;
-  }, [finishFilter, typeFilter]);
+  }, [finishFilter, typeFilter, sortBy]);
+
+  const clearAllFilters = () => {
+    setFinishFilter('All');
+    setTypeFilter('All');
+    setSearchParams({});
+  };
 
   return (
     <div className="range-page range-page--budget">
@@ -65,7 +107,7 @@ export default function Budget() {
                 <button
                   key={f}
                   className={`filter-chip ${finishFilter === f ? 'filter-chip--active' : ''}`}
-                  onClick={() => setFinishFilter(f)}
+                  onClick={() => handleFinishFilter(f)}
                 >
                   {f}
                 </button>
@@ -79,7 +121,7 @@ export default function Budget() {
                 <button
                   key={t}
                   className={`filter-chip ${typeFilter === t ? 'filter-chip--active' : ''}`}
-                  onClick={() => setTypeFilter(t)}
+                  onClick={() => handleTypeFilter(t)}
                 >
                   {t === 'All' ? 'All' : furnitureLabels[t] || t}
                 </button>
@@ -90,7 +132,8 @@ export default function Budget() {
             <label className="filter-label eyebrow">Sort</label>
             <select className="filter-select" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
               <option value="default">Default</option>
-
+              <option value="low-to-high">Price: Low to High</option>
+              <option value="high-to-low">Price: High to Low</option>
             </select>
           </div>
         </div>
@@ -102,7 +145,7 @@ export default function Budget() {
           {filtered.length === 0 ? (
             <AnimatedSection className="no-results">
               <p className="font-serif">No products match your filters.</p>
-              <button className="btn btn-secondary" onClick={() => { setFinishFilter('All'); setTypeFilter('All'); }}>
+              <button className="btn btn-secondary" onClick={clearAllFilters}>
                 Clear Filters
               </button>
             </AnimatedSection>

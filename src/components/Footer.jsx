@@ -48,6 +48,8 @@ export default function Footer() {
               <li><Link to="/bulk-orders">Bulk Orders</Link></li>
               <li><Link to="/about">Our Story</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link to="/refund-policy">Refund Policy</Link></li>
             </ul>
           </div>
 
@@ -55,12 +57,12 @@ export default function Footer() {
           <div className="footer__links-col">
             <h4 className="footer__heading eyebrow">Categories</h4>
             <ul className="footer__links">
-              <li><Link to="/premium">Beds</Link></li>
-              <li><Link to="/premium">Dining Tables</Link></li>
-              <li><Link to="/premium">Wardrobes</Link></li>
-              <li><Link to="/premium">Sofas & Chairs</Link></li>
-              <li><Link to="/budget">TV Units</Link></li>
-              <li><Link to="/budget">Study Tables</Link></li>
+              <li><Link to="/premium?category=bed">Beds</Link></li>
+              <li><Link to="/premium?category=dining">Dining Tables</Link></li>
+              <li><Link to="/premium?category=wardrobe">Wardrobes</Link></li>
+              <li><Link to="/premium?category=sofa">Sofas & Chairs</Link></li>
+              <li><Link to="/budget?category=tv-unit">TV Units</Link></li>
+              <li><Link to="/budget?category=table">Study Tables</Link></li>
             </ul>
           </div>
 

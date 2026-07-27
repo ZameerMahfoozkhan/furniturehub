@@ -155,10 +155,20 @@
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-xl);
+  align-items: center;
 }
 
+.product-detail__ctas .btn,
 .product-detail__cta-primary {
   flex: 1;
+  width: 100%;
+}
+
+@media (max-width: 580px) {
+  .product-detail__ctas {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
 }
 
 /* ─── Trust Badges ─── */

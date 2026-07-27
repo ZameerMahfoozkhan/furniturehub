@@ -13,13 +13,15 @@ import CustomFurniture from './pages/CustomFurniture';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import BulkOrders from './pages/BulkOrders';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import RefundPolicy from './pages/RefundPolicy';
 import './App.css';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname, search]);
   return null;
 }
 
@@ -44,6 +46,8 @@ function AnimatedRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/bulk-orders" element={<BulkOrders />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
         </Routes>
         <Footer />
       </motion.div>

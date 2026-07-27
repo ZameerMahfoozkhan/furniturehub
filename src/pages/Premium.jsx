@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import ProductCard from '../components/ProductCard';
@@ -10,21 +11,62 @@ const furnitureTypes = ['All', 'bed', 'dining', 'wardrobe', 'table', 'chair', 's
 const furnitureLabels = { bed: 'Beds', dining: 'Dining', wardrobe: 'Wardrobes', table: 'Tables', chair: 'Chairs', sofa: 'Sofas', 'tv-unit': 'TV Units', bookshelf: 'Bookshelves' };
 
 export default function Premium() {
-  const [woodFilter, setWoodFilter] = useState('All');
-  const [typeFilter, setTypeFilter] = useState('All');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const currentCategory = searchParams.get('category') || searchParams.get('type') || 'All';
+  const currentWood = searchParams.get('wood') || 'All';
+
+  const [woodFilter, setWoodFilter] = useState(currentWood);
+  const [typeFilter, setTypeFilter] = useState(currentCategory);
   const [sortBy, setSortBy] = useState('default');
 
   useEffect(() => {
     document.title = `Premium Solid Wood Furniture | ${BRAND_NAME}`;
   }, []);
 
+  useEffect(() => {
+    const cat = searchParams.get('category') || searchParams.get('type') || 'All';
+    const wood = searchParams.get('wood') || 'All';
+    setTypeFilter(cat);
+    setWoodFilter(wood);
+  }, [searchParams]);
+
+  const handleWoodFilter = (w) => {
+    setWoodFilter(w);
+    const params = new URLSearchParams(searchParams);
+    if (w === 'All') params.delete('wood');
+    else params.set('wood', w);
+    setSearchParams(params);
+  };
+
+  const handleTypeFilter = (t) => {
+    setTypeFilter(t);
+    const params = new URLSearchParams(searchParams);
+    if (t === 'All') {
+      params.delete('category');
+      params.delete('type');
+    } else {
+      params.set('category', t);
+    }
+    setSearchParams(params);
+  };
+
   const filtered = useMemo(() => {
     let result = [...premiumProducts];
     if (woodFilter !== 'All') result = result.filter(p => p.woodType === woodFilter);
     if (typeFilter !== 'All') result = result.filter(p => p.subType === typeFilter);
 
+    if (sortBy === 'low-to-high') result.sort((a, b) => a.price - b.price);
+    if (sortBy === 'high-to-low') result.sort((a, b) => b.price - a.price);
+
     return result;
-  }, [woodFilter, typeFilter]);
+  }, [woodFilter, typeFilter, sortBy]);
+
+  const clearAllFilters = () => {
+    setWoodFilter('All');
+    setTypeFilter('All');
+    setSearchParams({});
+  };
 
   return (
     <div className="range-page range-page--premium" data-theme="premium">
@@ -65,7 +107,7 @@ export default function Premium() {
                 <button
                   key={w}
                   className={`filter-chip ${woodFilter === w ? 'filter-chip--active' : ''}`}
-                  onClick={() => setWoodFilter(w)}
+                  onClick={() => handleWoodFilter(w)}
                 >
                   {w}
                 </button>
@@ -79,7 +121,7 @@ export default function Premium() {
                 <button
                   key={t}
                   className={`filter-chip ${typeFilter === t ? 'filter-chip--active' : ''}`}
-                  onClick={() => setTypeFilter(t)}
+                  onClick={() => handleTypeFilter(t)}
                 >
                   {t === 'All' ? 'All' : furnitureLabels[t] || t}
                 </button>
@@ -90,7 +132,8 @@ export default function Premium() {
             <label className="filter-label eyebrow">Sort</label>
             <select className="filter-select" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
               <option value="default">Default</option>
-
+              <option value="low-to-high">Price: Low to High</option>
+              <option value="high-to-low">Price: High to Low</option>
             </select>
           </div>
         </div>
@@ -102,7 +145,7 @@ export default function Premium() {
           {filtered.length === 0 ? (
             <AnimatedSection className="no-results">
               <p className="font-serif">No products match your filters.</p>
-              <button className="btn btn-secondary" onClick={() => { setWoodFilter('All'); setTypeFilter('All'); }}>
+              <button className="btn btn-secondary" onClick={clearAllFilters}>
                 Clear Filters
               </button>
             </AnimatedSection>
