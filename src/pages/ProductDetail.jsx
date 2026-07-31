@@ -75,23 +75,6 @@ export default function ProductDetail() {
             <span className="eyebrow product-detail__material">{product.material}</span>
             <h1 className="font-serif product-detail__name">{product.name}</h1>
 
-
-
-            <p className="product-detail__desc">{product.description}</p>
-
-            {/* Specs */}
-            <div className="product-detail__specs">
-              <h3 className="eyebrow">Specifications</h3>
-              <table className="specs-table">
-                <tbody>
-                  <tr><td>Dimensions</td><td>{product.specs.dimensions}</td></tr>
-                  <tr><td>Finish</td><td>{product.specs.finish}</td></tr>
-                  <tr><td>Delivery</td><td>{product.specs.deliveryEstimate}</td></tr>
-                  <tr><td>Warranty</td><td>{product.specs.warranty}</td></tr>
-                </tbody>
-              </table>
-            </div>
-
             {/* Variant Selector */}
             <div className="product-detail__variants">
               <h3 className="eyebrow">Select Finish</h3>
@@ -126,6 +109,21 @@ export default function ProductDetail() {
               {['🚚 Pan India Delivery', '🔄 Easy Exchange', '🛡️ Quality Assured'].map((badge, i) => (
                 <span key={i} className="trust-badge">{badge}</span>
               ))}
+            </div>
+
+            <p className="product-detail__desc">{product.description}</p>
+
+            {/* Specs */}
+            <div className="product-detail__specs">
+              <h3 className="eyebrow">Specifications</h3>
+              <table className="specs-table">
+                <tbody>
+                  <tr><td>Dimensions</td><td>{product.specs.dimensions}</td></tr>
+                  <tr><td>Finish</td><td>{product.specs.finish}</td></tr>
+                  <tr><td>Delivery</td><td>{product.specs.deliveryEstimate}</td></tr>
+                  <tr><td>Warranty</td><td>{product.specs.warranty}</td></tr>
+                </tbody>
+              </table>
             </div>
           </AnimatedSection>
         </div>

@@ -15,10 +15,15 @@ export default function Home() {
     document.title = `${BRAND_NAME} — ${TAGLINE}`;
   }, []);
 
+  const budgetItems = products.filter(p => p.category === 'budget');
+  const premiumItems = products.filter(p => p.category === 'premium');
+  
   const featuredProducts = [
-    ...products.filter(p => p.category === 'budget').slice(0, 5),
-    ...products.filter(p => p.category === 'premium').slice(0, 2),
-  ];
+    ...budgetItems.slice(-4).reverse(), // 4 Newest budget items (Beds & Mandirs)
+    ...premiumItems.slice(0, 2), // 2 Premium items
+    budgetItems[0], // Office Desk for variety
+    budgetItems[2], // Wardrobe for variety
+  ].filter(Boolean);
 
   // Double testimonials for marquee
   const doubledTestimonials = [...testimonials, ...testimonials];

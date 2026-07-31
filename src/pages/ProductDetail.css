@@ -78,6 +78,11 @@
   margin-top: var(--space-md);
 }
 
+.product-detail__desc {
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
 /* ─── Specs Table ─── */
 .product-detail__specs {
   margin-top: var(--space-xl);
