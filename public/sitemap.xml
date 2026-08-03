@@ -1,128 +1,213 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Pages -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ═══ Main Pages ═══ -->
   <url>
     <loc>https://furniturehubayodhya.online/</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/hero.png</image:loc>
+      <image:title>Furniture Hub Ayodhya — Handcrafted Furniture Store</image:title>
+      <image:caption>Premium and budget furniture from Ayodhya delivered across India</image:caption>
+    </image:image>
   </url>
-  <url>
-    <loc>https://furniturehubayodhya.online/premium</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/budget</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/budget-hero.png</image:loc>
+      <image:title>Budget Furniture Range — Affordable Engineered Wood Furniture</image:title>
+    </image:image>
   </url>
+
+  <url>
+    <loc>https://furniturehubayodhya.online/premium</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/premium-hero.png</image:loc>
+      <image:title>Premium Solid Wood Furniture — Sheesham, Teak, Rosewood</image:title>
+    </image:image>
+  </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/custom-furniture</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://furniturehubayodhya.online/about</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://furniturehubayodhya.online/contact</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/bulk-orders</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
+
+  <url>
+    <loc>https://furniturehubayodhya.online/about</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://furniturehubayodhya.online/contact</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/privacy-policy</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/refund-policy</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
-  <!-- Premium Products -->
+  <!-- ═══ Premium Products ═══ -->
   <url>
     <loc>https://furniturehubayodhya.online/product/premium-3-seater-solid-wood-sofa</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://furniturehubayodhya.online/product/premium-white-3-seater-sofa</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/3-seater-sofa-front-view.jpeg</image:loc>
+      <image:title>Premium 3-Seater Solid Wood Sofa — Sheesham Wood</image:title>
+      <image:caption>Handcrafted Sheesham wood 3-seater sofa with premium upholstery from Ayodhya</image:caption>
+    </image:image>
   </url>
 
-  <!-- Budget Products -->
+  <url>
+    <loc>https://furniturehubayodhya.online/product/premium-white-3-seater-sofa</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/white-3-seater-sofa-front-view.jpeg</image:loc>
+      <image:title>Premium White 3-Seater Sofa — Teak Wood</image:title>
+      <image:caption>Elegant white upholstery teak wood sofa from Furniture Hub Ayodhya</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ Budget Products ═══ -->
   <url>
     <loc>https://furniturehubayodhya.online/product/executive-office-desk</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/Executive%20Office%20Desk-front.jpeg</image:loc>
+      <image:title>Executive Office Desk — Modern Wooden Desk with Storage</image:title>
+      <image:caption>Engineered wood office desk with drawer and cabinet from Furniture Hub</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/product/luxury-bathroom-vanity-unit</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/Luxury%20Bathroom%20Vanity%20Unit-1.jpeg</image:loc>
+      <image:title>Luxury Bathroom Vanity Unit — Marble Finish with Gold Accents</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/product/3-door-wooden-wardrobe</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/3-Door%20Wooden%20Wardrobe-side.jpeg</image:loc>
+      <image:title>3-Door Wooden Wardrobe — Budget Engineered Wood</image:title>
+      <image:caption>Spacious 3-door wardrobe with lockable doors and shelves</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/product/modern-wall-mounted-tv-unit</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/Modern%20Wall-Mounted%20TV%20Unit-front.jpeg</image:loc>
+      <image:title>Modern Wall-Mounted TV Unit — Floating Entertainment Unit</image:title>
+      <image:caption>Space-saving wall-mounted TV unit with media compartments</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/product/modern-wooden-shoe-rack-cabinet</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/Modern%20Wooden%20Shoe%20Rack%20Cabinet-front.jpeg</image:loc>
+      <image:title>Modern Wooden Shoe Rack Cabinet — Space-Saving Storage</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/product/premium-white-wooden-mandir-led</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/mandrir-1-front.jpg</image:loc>
+      <image:title>Premium White Wooden Mandir with LED — Home Temple</image:title>
+      <image:caption>Wooden pooja mandir with LED backlight and storage drawers</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/product/premium-marble-finish-wooden-mandir-led</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/mandrir-2-front..jpg</image:loc>
+      <image:title>Marble Finish Wooden Mandir with LED Ganesh Design — Home Temple</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/product/whitora-premium-hydraulic-storage-bed</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/Whitora-Bed.jpg</image:loc>
+      <image:title>Whitora Premium Hydraulic Storage Bed — White Finish</image:title>
+      <image:caption>Queen size hydraulic storage bed with bookshelf headboard</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://furniturehubayodhya.online/product/modern-engineered-wood-bed-dark-walnut</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://furniturehubayodhya.online/Dark-Walnut-side.jpg</image:loc>
+      <image:title>Modern Engineered Wood Bed — Dark Walnut Finish</image:title>
+      <image:caption>Queen size engineered wood bed with storage headboard</image:caption>
+    </image:image>
   </url>
+
 </urlset>

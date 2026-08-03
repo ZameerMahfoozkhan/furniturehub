@@ -12,7 +12,7 @@ import './Home.css';
 
 export default function Home() {
   useEffect(() => {
-    document.title = `${BRAND_NAME} — ${TAGLINE}`;
+    document.title = `Furniture Hub Ayodhya — Buy Solid Wood & Budget Furniture Online | Pan India Delivery`;
   }, []);
 
   const budgetItems = products.filter(p => p.category === 'budget');
@@ -23,6 +23,7 @@ export default function Home() {
     ...premiumItems.slice(0, 2), // 2 Premium items
     budgetItems[0], // Office Desk for variety
     budgetItems[2], // Wardrobe for variety
+    budgetItems[3], // TV Unit
   ].filter(Boolean);
 
   // Double testimonials for marquee
@@ -73,8 +74,10 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            <Link to="/budget" className="btn btn-primary btn-lg">Explore Budget Range</Link>
-            <Link to="/premium" className="btn btn-secondary btn-lg">Explore Premium Wood →</Link>
+            <Link to="/budget" className="btn btn-primary hero-btn">Explore Budget</Link>
+            <Link to="/premium" className="btn btn-secondary hero-btn">Premium Wood</Link>
+            <Link to="/custom-furniture" className="btn btn-outline-accent hero-btn">✏️ Customise</Link>
+            <Link to="/bulk-orders" className="btn btn-outline-accent hero-btn">📦 Bulk Orders</Link>
           </motion.div>
 
           <motion.div
@@ -94,15 +97,7 @@ export default function Home() {
             </span>
           </motion.div>
 
-          <motion.div
-            className="hero__scroll"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.8 }}
-          >
-            <span>Scroll to explore</span>
-            <div className="hero__scroll-line" />
-          </motion.div>
+
         </div>
       </section>
 

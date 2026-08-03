@@ -8,7 +8,7 @@ import './Contact.css';
 
 export default function Contact() {
   useEffect(() => {
-    document.title = `Contact Us | ${BRAND_NAME}`;
+    document.title = `Contact Furniture Hub Ayodhya — WhatsApp Order, Call +91 95806 59559 | Furniture Shop Ayodhya`;
   }, []);
 
   return (

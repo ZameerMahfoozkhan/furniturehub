@@ -23,7 +23,7 @@ const values = [
 
 export default function About() {
   useEffect(() => {
-    document.title = `Our Story — Craftsmanship Rooted in Ayodhya | ${BRAND_NAME}`;
+    document.title = `About Furniture Hub Ayodhya — Handcrafted Furniture Since 2010 | Artisan Furniture Maker in UP`;
   }, []);
 
   return (

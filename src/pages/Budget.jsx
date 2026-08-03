@@ -21,7 +21,7 @@ export default function Budget() {
   const [sortBy, setSortBy] = useState('default');
 
   useEffect(() => {
-    document.title = `Budget Furniture Range — Great Design, Honest Price | ${BRAND_NAME}`;
+    document.title = `Affordable Engineered Wood Furniture Online — Beds, Wardrobes, TV Units & More | Furniture Hub Ayodhya`;
   }, []);
 
   useEffect(() => {

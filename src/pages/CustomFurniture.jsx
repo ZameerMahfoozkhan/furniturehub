@@ -63,7 +63,7 @@ export default function CustomFurniture() {
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
-    document.title = `Custom Furniture — Made to Order | ${BRAND_NAME}`;
+    document.title = `Custom Furniture Maker in Ayodhya — Made-to-Order Solid Wood & Engineered Wood | Furniture Hub`;
   }, []);
 
   return (

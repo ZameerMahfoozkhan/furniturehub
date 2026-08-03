@@ -21,7 +21,7 @@ export default function Premium() {
   const [sortBy, setSortBy] = useState('default');
 
   useEffect(() => {
-    document.title = `Premium Solid Wood Furniture | ${BRAND_NAME}`;
+    document.title = `Premium Sheesham, Teak & Rosewood Furniture Online — Solid Wood Collection | Furniture Hub Ayodhya`;
   }, []);
 
   useEffect(() => {

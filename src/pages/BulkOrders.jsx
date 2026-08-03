@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import WhatsAppButton from '../components/WhatsAppButton';
 import './BulkOrders.css';
@@ -15,6 +16,10 @@ const AnimatedSection = ({ children, className = '', delay = 0 }) => (
 );
 
 export default function BulkOrders() {
+  useEffect(() => {
+    document.title = `Bulk Furniture Orders for Hotels, Offices & Projects — Wholesale Prices | Furniture Hub Ayodhya`;
+  }, []);
+
   return (
     <div className="bulk-page">
       {/* Hero */}

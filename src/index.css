@@ -328,6 +328,21 @@ body {
   color: #FFFFFF;
 }
 
+.btn-outline-accent {
+  background: transparent;
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  box-shadow: 0 2px 8px rgba(193, 96, 63, 0.1);
+}
+
+.btn-outline-accent:hover {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(193, 96, 63, 0.3);
+}
+
 .btn-lg {
   padding: 16px 32px;
   font-size: var(--text-sm);

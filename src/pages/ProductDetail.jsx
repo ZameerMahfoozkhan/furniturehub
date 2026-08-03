@@ -18,7 +18,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     if (product) {
-      document.title = `${product.name} | ${BRAND_NAME}`;
+      document.title = `${product.name} — Buy ${product.material} Furniture Online | Furniture Hub Ayodhya`;
     }
   }, [product]);
 
@@ -47,7 +47,78 @@ export default function ProductDetail() {
     ? `Hi, I'm interested in ${product.name} in ${selectedVariant} finish. Can you share more details?`
     : `Hi, I'm interested in ${product.name}. Can you share more details?`;
 
+  // SEO: Dynamic meta description
+  useEffect(() => {
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && product) {
+      metaDesc.setAttribute('content', `Buy ${product.name} online from Furniture Hub Ayodhya. ${product.material} furniture with ${product.specs?.warranty || 'warranty'}. ${product.specs?.deliveryEstimate || 'Pan India delivery'}. Order via WhatsApp.`);
+    }
+    return () => {
+      if (metaDesc) {
+        metaDesc.setAttribute('content', 'Buy premium Sheesham, Teak & Rosewood solid wood furniture and affordable engineered wood furniture online from Ayodhya. Delivered pan-India.');
+      }
+    };
+  }, [product]);
+
+  // SEO: Product structured data
+  const productJsonLd = product ? {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description?.split('\n')[0] || '',
+    "image": product.images?.map(img => `https://furniturehubayodhya.online${img.src}`) || [],
+    "brand": {
+      "@type": "Brand",
+      "name": "Furniture Hub Ayodhya"
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Furniture Hub Ayodhya",
+      "address": { "@type": "PostalAddress", "addressLocality": "Ayodhya", "addressRegion": "Uttar Pradesh", "addressCountry": "IN" }
+    },
+    "material": product.material,
+    "category": isPremium ? "Premium Solid Wood Furniture" : "Affordable Engineered Wood Furniture",
+    "url": `https://furniturehubayodhya.online/product/${product.slug}`,
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "INR",
+      ...(product.price ? { "price": product.price } : { "price": "0", "priceValidUntil": "2027-12-31" }),
+      "seller": {
+        "@type": "Organization",
+        "name": "Furniture Hub Ayodhya"
+      },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "IN"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "businessDays": {
+            "@type": "QuantitativeValue",
+            "minValue": isPremium ? 14 : 5,
+            "maxValue": isPremium ? 20 : 8
+          }
+        }
+      }
+    },
+    "additionalProperty": [
+      { "@type": "PropertyValue", "name": "Dimensions", "value": product.specs?.dimensions || '' },
+      { "@type": "PropertyValue", "name": "Finish", "value": product.specs?.finish || '' },
+      { "@type": "PropertyValue", "name": "Warranty", "value": product.specs?.warranty || '' }
+    ]
+  } : null;
+
   return (
+    <>
+      {productJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+        />
+      )}
     <div className={`product-detail ${isPremium ? '' : 'product-detail--budget'}`} data-theme={isPremium ? undefined : 'budget'}>
       {/* Breadcrumb */}
       <div className="breadcrumb container">
@@ -145,5 +216,6 @@ export default function ProductDetail() {
         </section>
       )}
     </div>
+    </>
   );
 }
