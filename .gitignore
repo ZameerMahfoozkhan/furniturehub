@@ -34,3 +34,6 @@ skills-lock.json
 !README.md
 *.cjs
 *.txt
+
+# Unused assets (kept locally, not pushed)
+public/_unused/
