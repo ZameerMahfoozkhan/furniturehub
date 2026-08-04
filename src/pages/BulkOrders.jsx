@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import WhatsAppButton from '../components/WhatsAppButton';
+import { trustStats } from '../data/products';
 import './BulkOrders.css';
 
+/* ── Animated Section ── */
 const AnimatedSection = ({ children, className = '', delay = 0 }) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
@@ -16,83 +18,138 @@ const AnimatedSection = ({ children, className = '', delay = 0 }) => (
   </motion.div>
 );
 
-/* ── Bulk-available product categories ── */
+/* ── Animated Counter ── */
+function AnimCounter({ value, suffix = '' }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+  return (
+    <motion.span
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
+    >
+      {isInView ? (
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          {value.toLocaleString('en-IN')}{suffix}
+        </motion.span>
+      ) : '0'}
+    </motion.span>
+  );
+}
+
+/* ── Data: Bulk product categories ── */
 const bulkCategories = [
   {
     icon: '🛏️',
     title: 'Beds',
-    keywords: 'Bulk Bed Supplier · Hostel Bed Supplier · Hotel Bed Supplier · Engineered Wood Bed Wholesale',
-    desc: 'Single, double & bunk beds in engineered wood and particle board. Ideal for hostels, PGs, hotels, and rental apartments. Hydraulic storage beds also available in bulk.',
+    keywords: 'Bulk Bed Supplier · Hostel Bed · Hotel Bed · Engineered Wood Bed Wholesale',
+    desc: 'Single, double & bunk beds in engineered wood and particle board. Hydraulic storage beds also available in bulk.',
+    startPrice: '4,999',
   },
   {
     icon: '🛋️',
     title: 'Sofas & Seating',
-    keywords: 'Bulk Sofa Supplier · Hotel Sofa Supplier · Cafe Sofa Supplier · Reception Sofa Supplier · Office Sofa Supplier',
-    desc: 'Reception sofas, café seating, office waiting chairs, and living-room sets. Available in solid wood and engineered wood with custom upholstery options.',
+    keywords: 'Bulk Sofa Supplier · Hotel Sofa · Cafe Sofa · Office Sofa · Reception Sofa',
+    desc: 'Reception sofas, café seating, office chairs, and living-room sets in solid wood and engineered wood.',
+    startPrice: '8,999',
   },
   {
     icon: '🗄️',
     title: 'Wardrobes',
-    keywords: 'Wardrobe Wholesale · Bulk Wardrobe Supplier · Hostel Wardrobe · Hotel Wardrobe Supplier',
-    desc: '2-door and 3-door wardrobes with lockable compartments — perfect for hostel rooms, hotel suites, PG accommodations, and builder-furnished apartments.',
+    keywords: 'Wardrobe Wholesale · Bulk Wardrobe · Hostel Wardrobe · Hotel Wardrobe',
+    desc: '2-door and 3-door wardrobes with lockable compartments for hostel rooms, hotel suites, and apartments.',
+    startPrice: '4,499',
   },
   {
     icon: '🖥️',
     title: 'Tables & Desks',
-    keywords: 'Bulk Table Supplier · Office Table Supplier · Study Table Wholesale · Computer Table Wholesale · Dining Table Bulk Order',
-    desc: 'Office desks, computer tables, study tables, and dining tables. Compact designs for schools and colleges; executive finishes for corporate offices.',
+    keywords: 'Bulk Table Supplier · Office Table · Study Table Wholesale · Computer Table · Dining Table Bulk',
+    desc: 'Office desks, computer tables, study tables, and dining tables for schools, colleges, and offices.',
+    startPrice: '2,999',
   },
   {
     icon: '📺',
-    title: 'TV Units & Shoe Racks',
-    keywords: 'Bulk TV Unit Supplier · Shoe Rack Wholesale',
-    desc: 'Wall-mounted TV units and space-saving shoe rack cabinets in bulk. Great for furnished apartments, guest houses, and serviced accommodation.',
+    title: 'TV Units & Storage',
+    keywords: 'Bulk TV Unit · Shoe Rack Wholesale · Entertainment Unit',
+    desc: 'Wall-mounted TV units and shoe rack cabinets for furnished apartments and guest houses.',
+    startPrice: '2,499',
   },
   {
     icon: '🛕',
     title: 'Pooja Mandirs',
-    keywords: 'Bulk Mandir Supplier · Wooden Temple Wholesale',
-    desc: 'LED-backlit wooden mandirs with storage. Popular for builder projects, apartment complexes, and retail reselling.',
+    keywords: 'Bulk Mandir · Wooden Temple Wholesale · LED Mandir',
+    desc: 'LED-backlit wooden mandirs with storage. Popular for builder projects and retail reselling.',
+    startPrice: '5,999',
   },
 ];
 
-/* ── Industries / B2B buyer types ── */
+/* ── Data: Industries ── */
 const industries = [
-  { icon: '🏨', title: 'Hotels & Resorts', desc: 'Complete room packages — beds, wardrobes, desks, TV units & sofas for every room tier.' },
-  { icon: '🏠', title: 'Hostels & PG Rooms', desc: 'Budget beds, wardrobes & study tables built to handle daily wear in shared living spaces.' },
-  { icon: '🏢', title: 'Offices & Co-Working', desc: 'Executive desks, reception sofas, meeting-room tables & storage cabinets.' },
-  { icon: '🏫', title: 'Schools & Colleges', desc: 'Classroom tables, library furniture, and hostel beds at institution-friendly pricing.' },
-  { icon: '🏗️', title: 'Builders & Apartments', desc: 'Flat-ready furniture packages — beds, wardrobes, TV units, shoe racks — per unit pricing.' },
-  { icon: '☕', title: 'Cafés & Restaurants', desc: 'Dining tables, chairs, counter furniture & accent seating for F&B interiors.' },
-  { icon: '🏡', title: 'Guest Houses', desc: 'Complete guest room packages including bed, wardrobe, table and TV unit — budget and premium.' },
-  { icon: '🏘️', title: 'Rental Properties', desc: 'Durable, cost-effective furniture for rental apartments, co-living spaces, and service apartments.' },
+  { icon: '🏨', title: 'Hotels & Resorts', desc: 'Complete room packages — beds, wardrobes, desks, TV units & sofas.' },
+  { icon: '🏠', title: 'Hostels & PG Rooms', desc: 'Budget beds, wardrobes & study tables for shared living spaces.' },
+  { icon: '🏢', title: 'Offices & Co-Working', desc: 'Executive desks, reception sofas, meeting tables & cabinets.' },
+  { icon: '🏫', title: 'Schools & Colleges', desc: 'Classroom tables, library furniture, and hostel beds at scale.' },
+  { icon: '🏗️', title: 'Builders & Apartments', desc: 'Flat-ready packages — bed, wardrobe, TV unit, shoe rack per unit.' },
+  { icon: '☕', title: 'Cafés & Restaurants', desc: 'Dining tables, counter furniture & accent seating for F&B.' },
+  { icon: '🏡', title: 'Guest Houses', desc: 'Complete guest room sets — budget and premium options.' },
+  { icon: '🏘️', title: 'Rental Properties', desc: 'Durable, cost-effective furniture for service apartments.' },
 ];
 
-/* ── Material options ── */
+/* ── Data: Materials ── */
 const materials = [
   {
-    title: 'Engineered Wood Furniture',
-    desc: 'Our most popular bulk range. Engineered wood offers excellent durability, a premium look, and a lower cost than solid wood — making it the top choice for hotels, hostels, offices, and apartment projects. Available as beds, wardrobes, desks, TV units, shoe racks, and dining tables.',
-    tags: ['Engineered Wood Bed', 'Engineered Wood Wardrobe', 'Engineered Wood TV Unit', 'Engineered Wood Study Table', 'Engineered Wood Dining Table', 'Engineered Wood Sofa', 'Engineered Wood Office Furniture'],
+    title: 'Engineered Wood',
+    desc: 'Our most popular bulk range — excellent durability, premium look, lower cost than solid wood. Top choice for hotels, hostels, offices, and apartments.',
+    tags: ['Engineered Wood Bed', 'Engineered Wood Wardrobe', 'Engineered Wood TV Unit', 'Engineered Wood Study Table', 'Engineered Wood Dining Table', 'Engineered Wood Office Furniture'],
+    color: '#C1603F',
   },
   {
-    title: 'Particle Board Furniture',
-    desc: 'The most affordable option for large-volume orders. Particle board furniture is lightweight, easy to install, and available in a wide range of finishes. Ideal for budget hotel rooms, PG hostels, rental apartments, and institutional projects.',
-    tags: ['Particle Board Bed', 'Particle Board Wardrobe', 'Particle Board Table', 'Particle Board Office Desk', 'Affordable Particle Board Furniture', 'Commercial Particle Board Furniture'],
+    title: 'Particle Board',
+    desc: 'The most affordable option for high-volume orders. Lightweight, easy to install, available in a wide range of finishes. Ideal for budget hotel rooms and PG hostels.',
+    tags: ['Particle Board Bed', 'Particle Board Wardrobe', 'Particle Board Table', 'Particle Board Office Desk', 'Affordable Particle Board Furniture'],
+    color: '#8A7D6B',
   },
   {
-    title: 'Premium Solid Wood Furniture',
-    desc: 'For luxury hotels, resorts, and executive offices that demand the finest craftsmanship. Handcrafted from Sheesham, Teak, Mango Wood, and Rosewood by Ayodhya\'s master artisans.',
+    title: 'Premium Solid Wood',
+    desc: 'For luxury hotels, resorts, and executive offices demanding the finest craftsmanship. Handcrafted from Sheesham, Teak, Mango Wood, and Rosewood.',
     tags: ['Sheesham Wood', 'Teak Wood', 'Rosewood', 'Mango Wood'],
+    color: '#A9784F',
   },
+];
+
+/* ── Data: Process steps ── */
+const steps = [
+  { num: '01', title: 'Share Requirements', desc: 'Product types, quantities, material preference, dimensions & delivery location.', icon: '📋' },
+  { num: '02', title: 'Custom Quotation', desc: 'Volume-based wholesale pricing with specs & delivery timeline — within 24 hours.', icon: '💲' },
+  { num: '03', title: 'Manufacturing', desc: 'Our Ayodhya workshop builds your order. Progress updates via WhatsApp throughout.', icon: '🏭' },
+  { num: '04', title: 'Pan-India Delivery', desc: 'Professionally packed, insured transit, real-time tracking — anywhere in India.', icon: '🚚' },
+];
+
+/* ── Data: FAQs ── */
+const faqs = [
+  { q: 'What is the minimum order quantity for bulk furniture?', a: 'We keep our MOQ flexible. Whether you need 10 beds for a guest house or 500 wardrobes for a builder project, we accommodate orders of every scale with competitive wholesale pricing.' },
+  { q: 'Do you supply engineered wood furniture in bulk?', a: 'Yes! We are one of India\'s leading engineered wood furniture suppliers. Our bulk range includes beds, wardrobes, TV units, study tables, dining tables, office desks, and sofas — all at wholesale prices.' },
+  { q: 'Can you supply particle board furniture for hotels and hostels?', a: 'Absolutely. Our particle board furniture range is designed for high-volume commercial projects — hostel beds, hotel wardrobes, PG room tables, and office desks at the lowest cost per unit.' },
+  { q: 'Do you deliver bulk furniture orders across India?', a: 'Yes, we offer pan-India delivery. We\'ve delivered to 150+ cities including Mumbai, Delhi, Bangalore, Hyderabad, Pune, Kolkata, Chennai, and numerous tier-2 and tier-3 cities.' },
+  { q: 'What industries do you supply furniture to?', a: 'Hotels, resorts, hostels, PG rooms, offices, co-working spaces, schools, colleges, builders, apartments, cafés, restaurants, guest houses, and rental properties.' },
+  { q: 'Do you offer budget furniture for rental properties?', a: 'Yes. Our budget range is specifically designed for rental properties, PG accommodations, and serviced apartments — durable, cost-effective engineered wood and particle board furniture.' },
 ];
 
 export default function BulkOrders() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   useEffect(() => {
     document.title = 'Bulk Furniture Supplier in Ayodhya | Wholesale Engineered Wood & Particle Board Furniture for Hotels, Hostels, Offices — Furniture Hub';
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
-      meta.setAttribute('content', 'Furniture Hub Ayodhya — India\'s trusted bulk furniture supplier & wholesale furniture manufacturer. Engineered wood & particle board beds, wardrobes, tables, sofas & TV units for hotels, hostels, PG rooms, offices, schools, builders & apartments. Factory-direct pricing, pan-India delivery.');
+      meta.setAttribute('content', 'Furniture Hub Ayodhya — India\'s trusted bulk furniture supplier & wholesale furniture manufacturer. Engineered wood & particle board beds, wardrobes, tables, sofas for hotels, hostels, PG rooms, offices, schools, builders. Factory-direct pricing, pan-India delivery.');
     }
   }, []);
 
@@ -102,112 +159,188 @@ export default function BulkOrders() {
       <meta itemProp="description" content="Wholesale bulk furniture supplier in Ayodhya — engineered wood and particle board furniture for hotels, offices, hostels, schools, and builders." />
       <meta itemProp="areaServed" content="India" />
 
-      {/* ═══ Hero ═══ */}
-      <section className="bulk-hero wood-texture">
-        <div className="bulk-hero__bg" />
-        <div className="container bulk-hero__content">
-          <motion.span className="eyebrow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-            B2B &amp; Wholesale — Bulk Furniture Supplier in Ayodhya
-          </motion.span>
+      {/* ═══════════════════════════════════════
+           HERO — Full-bleed parallax
+           ═══════════════════════════════════════ */}
+      <section className="bulk-hero" ref={heroRef}>
+        <motion.div className="bulk-hero__bg" style={{ y: heroY }} />
+        <div className="bulk-hero__overlay" />
+        <motion.div className="container bulk-hero__content" style={{ opacity: heroOpacity }}>
+          <motion.div
+            className="bulk-hero__badge"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+          >
+            <span className="bulk-hero__badge-dot" />
+            Accepting Bulk Orders — Pan India Delivery
+          </motion.div>
+
           <motion.h1
             className="font-serif bulk-hero__title"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            Bulk Furniture Supplier<br />for Hotels, Offices &amp; Projects.
+            Wholesale Furniture<br />
+            <span className="bulk-hero__title-accent">at Factory Prices.</span>
           </motion.h1>
+
           <motion.p
             className="bulk-hero__subtitle"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
           >
-            Wholesale furniture manufacturer in Ayodhya — engineered wood &amp; particle board beds, wardrobes, sofas, tables &amp; TV&nbsp;units at factory-direct prices. Bulk orders for hotels, hostels, PG&nbsp;rooms, offices, schools, builders &amp; apartments — delivered pan&#8209;India.
+            Engineered wood &amp; particle board beds, wardrobes, sofas, tables &amp; TV&nbsp;units — manufactured in Ayodhya and delivered to hotels, hostels, offices, schools &amp; apartments across India.
           </motion.p>
+
           <motion.div
-            className="bulk-hero__actions"
+            className="bulk-hero__ctas"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
           >
-            <WhatsAppButton message="Hi! I'm interested in bulk furniture order for my project. Can we discuss pricing and availability?" className="btn-lg">
-              Get Wholesale Quote on WhatsApp
+            <WhatsAppButton message="Hi! I'm interested in bulk furniture order for my project. Can we discuss pricing?" className="btn-lg">
+              Get Wholesale Quote
             </WhatsAppButton>
+            <a href="#bulk-catalog" className="btn btn-secondary btn-lg">
+              View Catalog ↓
+            </a>
           </motion.div>
+
+          {/* Floating trust stats */}
+          <motion.div
+            className="bulk-hero__stats"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+          >
+            {[
+              { value: 15, suffix: '+', label: 'Years' },
+              { value: 2500, suffix: '+', label: 'Clients' },
+              { value: 150, suffix: '+', label: 'Cities' },
+            ].map((stat) => (
+              <div className="bulk-hero__stat" key={stat.label}>
+                <span className="bulk-hero__stat-value">
+                  <AnimCounter value={stat.value} suffix={stat.suffix} />
+                </span>
+                <span className="bulk-hero__stat-label">{stat.label}</span>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="bulk-hero__scroll"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+        >
+          <div className="bulk-hero__scroll-line" />
+        </motion.div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+           SOCIAL PROOF MARQUEE
+           ═══════════════════════════════════════ */}
+      <section className="bulk-marquee-section">
+        <div className="bulk-marquee-track">
+          {[...Array(2)].map((_, setIdx) => (
+            <div className="bulk-marquee-set" key={setIdx}>
+              {['Hotel Furniture Supplier', 'Hostel Furniture', 'Office Furniture Wholesale', 'Bulk Bed Supplier', 'Particle Board Furniture', 'Engineered Wood Wholesale', 'Apartment Furniture', 'School Furniture Supplier', 'Builder Furniture', 'Café & Restaurant Furniture'].map((text) => (
+                <span className="bulk-marquee-item" key={`${setIdx}-${text}`}>
+                  {text} <span className="bulk-marquee-dot">◆</span>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ═══ Why Choose Us ═══ */}
+      {/* ═══════════════════════════════════════
+           WHY PARTNER WITH US
+           ═══════════════════════════════════════ */}
       <section className="section bulk-benefits">
         <div className="container">
-          <AnimatedSection className="bulk-benefits__header text-center">
+          <AnimatedSection className="bulk-section-header">
             <span className="eyebrow">The Furniture Hub Advantage</span>
-            <h2 className="font-serif section-title">Why Partner With India's Trusted Wholesale Furniture Supplier?</h2>
-            <p className="section-subtitle">As a leading <strong>bulk furniture dealer</strong> and <strong>commercial furniture supplier</strong> based in Ayodhya, we serve hotels, hostels, offices, schools, builders, and institutional buyers across India.</p>
+            <h2 className="font-serif section-title">Why India's Top Buyers<br />Choose Us for Bulk Orders</h2>
           </AnimatedSection>
 
           <div className="bulk-benefits__grid">
-            <AnimatedSection className="benefit-card" delay={0.1}>
-              <div className="benefit-card__icon">💰</div>
-              <h3 className="font-serif benefit-card__title">Factory-Direct Wholesale Pricing</h3>
-              <p className="benefit-card__desc">Cut out the middlemen. As a <strong>furniture wholesale</strong> manufacturer, we offer the most competitive rates on bulk volume — whether you need 10 beds or 500 wardrobes. The more you order, the more you save.</p>
-            </AnimatedSection>
-
-            <AnimatedSection className="benefit-card" delay={0.2}>
-              <div className="benefit-card__icon">🏭</div>
-              <h3 className="font-serif benefit-card__title">Custom Manufacturing at Scale</h3>
-              <p className="benefit-card__desc">Need a specific design replicated across 50 hotel rooms? Our Ayodhya workshop custom-builds <strong>engineered wood furniture</strong>, <strong>particle board furniture</strong>, and solid wood pieces to your exact specifications.</p>
-            </AnimatedSection>
-
-            <AnimatedSection className="benefit-card" delay={0.3}>
-              <div className="benefit-card__icon">🚚</div>
-              <h3 className="font-serif benefit-card__title">Reliable Pan-India Delivery</h3>
-              <p className="benefit-card__desc">We handle all logistics. Whether your project is in Mumbai, Delhi, Bangalore, or any tier-2 city, we ensure safe, timely, and insured delivery of your <strong>bulk furniture order</strong>.</p>
-            </AnimatedSection>
-
-            <AnimatedSection className="benefit-card" delay={0.4}>
-              <div className="benefit-card__icon">📦</div>
-              <h3 className="font-serif benefit-card__title">Flexible MOQ</h3>
-              <p className="benefit-card__desc">No rigid minimum order requirements. Whether you're an <strong>affordable furniture supplier</strong> looking to stock 20 pieces or a builder furnishing 200 flats, we accommodate orders of every scale.</p>
-            </AnimatedSection>
-
-            <AnimatedSection className="benefit-card" delay={0.5}>
-              <div className="benefit-card__icon">🤝</div>
-              <h3 className="font-serif benefit-card__title">Dedicated B2B Support</h3>
-              <p className="benefit-card__desc">Direct WhatsApp line to our B2B team. Get custom quotations, bulk sample approvals, timeline planning, and on-site coordination — all through a single point of contact.</p>
-            </AnimatedSection>
-
-            <AnimatedSection className="benefit-card" delay={0.6}>
-              <div className="benefit-card__icon">🏅</div>
-              <h3 className="font-serif benefit-card__title">Proven Quality Standards</h3>
-              <p className="benefit-card__desc">15+ years of craftsmanship, 2500+ happy families, 150+ cities served. Every piece — from <strong>budget beds in bulk</strong> to premium Sheesham sofas — passes rigorous quality checks.</p>
-            </AnimatedSection>
+            {[
+              { icon: '💰', title: 'Factory-Direct Pricing', desc: 'Zero middlemen. As a direct furniture wholesale manufacturer, we offer the most competitive rates on bulk volume — whether you need 10 beds or 500 wardrobes.' },
+              { icon: '🏭', title: 'Custom Manufacturing', desc: 'Need a specific design replicated across 50 hotel rooms? Our Ayodhya workshop custom-builds engineered wood and particle board furniture to your exact specs.' },
+              { icon: '🚚', title: 'Pan-India Delivery', desc: 'Insured, professionally packed furniture shipped to 150+ cities — Mumbai, Delhi, Bangalore, or any tier-2 city. Safe, on-time, every time.' },
+              { icon: '📦', title: 'Flexible MOQ', desc: 'No rigid minimums. Whether you\'re stocking 20 pieces for a guest house or furnishing 200 apartments for a builder project — we serve every scale.' },
+              { icon: '🤝', title: 'Dedicated B2B Support', desc: 'Direct WhatsApp line to our B2B team — custom quotations, sample approvals, timeline planning & on-site coordination through one contact.' },
+              { icon: '🏅', title: 'Proven Quality', desc: '15+ years of craftsmanship, 2500+ happy clients, and rigorous quality checks on every single piece — from budget particle board to premium Sheesham.' },
+            ].map((card, i) => (
+              <AnimatedSection className="benefit-card" delay={i * 0.08} key={card.title}>
+                <div className="benefit-card__icon-wrap">
+                  <span className="benefit-card__icon">{card.icon}</span>
+                </div>
+                <h3 className="font-serif benefit-card__title">{card.title}</h3>
+                <p className="benefit-card__desc">{card.desc}</p>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ Product Categories for Bulk ═══ */}
-      <section className="section bulk-products">
+      {/* ═══════════════════════════════════════
+           INLINE CTA — Midpage conversion
+           ═══════════════════════════════════════ */}
+      <section className="section-sm bulk-inline-cta">
         <div className="container">
-          <AnimatedSection className="text-center">
+          <AnimatedSection className="bulk-inline-cta__inner">
+            <div className="bulk-inline-cta__text">
+              <h2 className="font-serif bulk-inline-cta__title">Need a custom quote<br />for your project?</h2>
+              <p className="bulk-inline-cta__desc">Share your requirements on WhatsApp and receive a detailed wholesale quotation within 24&nbsp;hours.</p>
+            </div>
+            <div className="bulk-inline-cta__action">
+              <WhatsAppButton message="Hi! I need a bulk furniture quote for my project. Here are my requirements:" className="btn-lg">
+                Get Free Quote on WhatsApp
+              </WhatsAppButton>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+           PRODUCT CATALOG
+           ═══════════════════════════════════════ */}
+      <section className="section bulk-products" id="bulk-catalog">
+        <div className="container">
+          <AnimatedSection className="bulk-section-header">
             <span className="eyebrow">Bulk Furniture Catalog</span>
             <h2 className="font-serif section-title">What You Can Order in Bulk</h2>
-            <p className="section-subtitle">From <strong>engineered wood beds wholesale</strong> to <strong>particle board office desks</strong> — browse our complete range of bulk-available furniture categories.</p>
+            <p className="section-subtitle">From engineered wood beds wholesale to particle board office desks — everything at volume pricing.</p>
           </AnimatedSection>
 
           <div className="bulk-products__grid">
             {bulkCategories.map((cat, i) => (
-              <AnimatedSection className="bulk-product-card" delay={i * 0.08} key={cat.title}>
-                <div className="bulk-product-card__icon">{cat.icon}</div>
+              <AnimatedSection className="bulk-product-card" delay={i * 0.07} key={cat.title}>
+                <div className="bulk-product-card__header">
+                  <span className="bulk-product-card__icon">{cat.icon}</span>
+                  <span className="bulk-product-card__price">from ₹{cat.startPrice}</span>
+                </div>
                 <h3 className="font-serif bulk-product-card__title">{cat.title}</h3>
                 <p className="bulk-product-card__desc">{cat.desc}</p>
                 <p className="bulk-product-card__tags">{cat.keywords}</p>
+                <WhatsAppButton
+                  message={`Hi! I need a bulk quote for ${cat.title}. Quantity: ___, Material: ___, Delivery Location: ___`}
+                  className="bulk-product-card__cta"
+                >
+                  Enquire for {cat.title}
+                </WhatsAppButton>
               </AnimatedSection>
             ))}
           </div>
 
-          <AnimatedSection className="text-center" delay={0.3}>
+          <AnimatedSection className="text-center" delay={0.2}>
             <div className="bulk-products__browse">
               <Link to="/budget" className="btn btn-secondary">Browse Budget Range</Link>
               <Link to="/premium" className="btn btn-secondary">Browse Premium Range</Link>
@@ -216,41 +349,47 @@ export default function BulkOrders() {
         </div>
       </section>
 
-      {/* ═══ Industries We Serve ═══ */}
+      {/* ═══════════════════════════════════════
+           INDUSTRIES WE SERVE
+           ═══════════════════════════════════════ */}
       <section className="section bulk-industries">
         <div className="container">
-          <AnimatedSection className="text-center">
+          <AnimatedSection className="bulk-section-header">
             <span className="eyebrow">Industries We Serve</span>
-            <h2 className="font-serif section-title">Institutional &amp; Commercial Furniture Supplier</h2>
-            <p className="section-subtitle">Trusted by <strong>hotel furniture suppliers</strong>, <strong>hostel furniture suppliers</strong>, <strong>office furniture suppliers</strong>, <strong>school furniture suppliers</strong>, and <strong>builder furniture suppliers</strong> across India.</p>
+            <h2 className="font-serif section-title">Built for Every Commercial Space</h2>
+            <p className="section-subtitle">Trusted institutional &amp; commercial furniture supplier for businesses across India.</p>
           </AnimatedSection>
 
           <div className="bulk-industries__grid">
             {industries.map((ind, i) => (
-              <AnimatedSection className="industry-card" delay={i * 0.06} key={ind.title}>
+              <AnimatedSection className="industry-card" delay={i * 0.05} key={ind.title}>
                 <span className="industry-card__icon">{ind.icon}</span>
-                <div>
+                <div className="industry-card__body">
                   <h3 className="industry-card__title">{ind.title}</h3>
                   <p className="industry-card__desc">{ind.desc}</p>
                 </div>
+                <span className="industry-card__arrow">→</span>
               </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ Material Options ═══ */}
+      {/* ═══════════════════════════════════════
+           MATERIAL OPTIONS
+           ═══════════════════════════════════════ */}
       <section className="section bulk-materials">
         <div className="container">
-          <AnimatedSection className="text-center">
+          <AnimatedSection className="bulk-section-header">
             <span className="eyebrow">Material Options</span>
-            <h2 className="font-serif section-title">Engineered Wood, Particle Board &amp; Solid Wood</h2>
-            <p className="section-subtitle">Choose the right material for your project budget. We are a leading <strong>engineered wood furniture supplier</strong>, <strong>particle board furniture manufacturer</strong>, and <strong>premium solid wood furniture dealer</strong> in Ayodhya.</p>
+            <h2 className="font-serif section-title">Choose Your Material,<br />We'll Handle the Rest</h2>
+            <p className="section-subtitle">Leading engineered wood furniture supplier, particle board furniture manufacturer, and premium solid wood dealer in Ayodhya.</p>
           </AnimatedSection>
 
           <div className="bulk-materials__grid">
             {materials.map((mat, i) => (
               <AnimatedSection className="material-card" delay={i * 0.1} key={mat.title}>
+                <div className="material-card__accent" style={{ background: mat.color }} />
                 <h3 className="font-serif material-card__title">{mat.title}</h3>
                 <p className="material-card__desc">{mat.desc}</p>
                 <div className="material-card__tags">
@@ -264,78 +403,43 @@ export default function BulkOrders() {
         </div>
       </section>
 
-      {/* ═══ How It Works ═══ */}
+      {/* ═══════════════════════════════════════
+           HOW IT WORKS — Visual process
+           ═══════════════════════════════════════ */}
       <section className="section bulk-process">
         <div className="container">
-          <AnimatedSection className="text-center">
-            <span className="eyebrow">Simple Process</span>
-            <h2 className="font-serif section-title">How Bulk Ordering Works</h2>
+          <AnimatedSection className="bulk-section-header">
+            <span className="eyebrow">Simple 4-Step Process</span>
+            <h2 className="font-serif section-title">From Enquiry to Delivery</h2>
           </AnimatedSection>
 
           <div className="bulk-process__steps">
-            <AnimatedSection className="process-step" delay={0.1}>
-              <div className="process-step__number">01</div>
-              <h3 className="process-step__title">Share Your Requirements</h3>
-              <p className="process-step__desc">Tell us what you need — product types, quantities, material preference (engineered wood, particle board, or solid wood), dimensions, and delivery location.</p>
-            </AnimatedSection>
-
-            <AnimatedSection className="process-step" delay={0.2}>
-              <div className="process-step__number">02</div>
-              <h3 className="process-step__title">Get a Custom Quotation</h3>
-              <p className="process-step__desc">Our B2B team sends you a detailed wholesale quote with volume-based pricing, material specs, and delivery timeline — within 24 hours.</p>
-            </AnimatedSection>
-
-            <AnimatedSection className="process-step" delay={0.3}>
-              <div className="process-step__number">03</div>
-              <h3 className="process-step__title">Approve &amp; We Manufacture</h3>
-              <p className="process-step__desc">Once you confirm, our Ayodhya workshop begins manufacturing your order. You receive progress updates via WhatsApp throughout.</p>
-            </AnimatedSection>
-
-            <AnimatedSection className="process-step" delay={0.4}>
-              <div className="process-step__number">04</div>
-              <h3 className="process-step__title">Pan-India Delivery</h3>
-              <p className="process-step__desc">Professionally packed and shipped to your doorstep — anywhere in India. Insured transit with real-time tracking updates.</p>
-            </AnimatedSection>
+            {steps.map((step, i) => (
+              <AnimatedSection className="process-step" delay={i * 0.1} key={step.num}>
+                <div className="process-step__icon">{step.icon}</div>
+                <div className="process-step__number">{step.num}</div>
+                <h3 className="process-step__title">{step.title}</h3>
+                <p className="process-step__desc">{step.desc}</p>
+                {i < steps.length - 1 && <div className="process-step__connector" />}
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ Long-Tail Keywords — FAQ-style ═══ */}
+      {/* ═══════════════════════════════════════
+           FAQ — Schema.org
+           ═══════════════════════════════════════ */}
       <section className="section bulk-faq" itemScope itemType="https://schema.org/FAQPage">
         <div className="container">
-          <AnimatedSection className="text-center">
+          <AnimatedSection className="bulk-section-header">
             <span className="eyebrow">Common Questions</span>
             <h2 className="font-serif section-title">Frequently Asked Questions</h2>
           </AnimatedSection>
 
           <div className="bulk-faq__list">
-            {[
-              {
-                q: 'What is the minimum order quantity for bulk furniture?',
-                a: 'We keep our MOQ flexible. Whether you need 10 beds for a guest house or 500 wardrobes for a builder project, we accommodate orders of every scale with competitive wholesale pricing.',
-              },
-              {
-                q: 'Do you supply engineered wood furniture in bulk?',
-                a: 'Yes! We are one of India\'s leading engineered wood furniture suppliers. Our bulk range includes engineered wood beds, wardrobes, TV units, study tables, dining tables, office desks, and sofas — all available at wholesale prices.',
-              },
-              {
-                q: 'Can you supply particle board furniture for hotels and hostels?',
-                a: 'Absolutely. Our particle board furniture range is designed for high-volume commercial projects — hostel beds, hotel wardrobes, PG room tables, and office desks. Particle board offers the lowest cost per unit while maintaining a premium look.',
-              },
-              {
-                q: 'Do you deliver bulk furniture orders across India?',
-                a: 'Yes, we offer pan-India delivery for all bulk orders. We\'ve delivered to 150+ cities including Mumbai, Delhi, Bangalore, Hyderabad, Pune, Kolkata, Chennai, and numerous tier-2 and tier-3 cities.',
-              },
-              {
-                q: 'What industries do you supply furniture to?',
-                a: 'We supply furniture to hotels, resorts, hostels, PG rooms, offices, co-working spaces, schools, colleges, builders, apartments, cafés, restaurants, guest houses, and rental properties. We are a trusted institutional and commercial furniture supplier.',
-              },
-              {
-                q: 'Do you offer budget furniture for rental properties and PG rooms?',
-                a: 'Yes. Our budget furniture range is specifically designed for rental properties, PG accommodations, and serviced apartments — durable, cost-effective, and good-looking engineered wood and particle board furniture that tenants love and landlords can afford.',
-              },
-            ].map((faq, i) => (
-              <AnimatedSection className="faq-item" delay={i * 0.05} key={i} itemScope itemType="https://schema.org/Question" itemProp="mainEntity">
+            {faqs.map((faq, i) => (
+              <AnimatedSection className="faq-item" delay={i * 0.04} key={i} itemScope itemType="https://schema.org/Question" itemProp="mainEntity">
                 <h3 className="faq-item__q" itemProp="name">{faq.q}</h3>
                 <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
                   <p className="faq-item__a" itemProp="text">{faq.a}</p>
@@ -346,19 +450,34 @@ export default function BulkOrders() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="section bulk-cta-section">
+      {/* ═══════════════════════════════════════
+           FINAL CTA — Full-width conversion
+           ═══════════════════════════════════════ */}
+      <section className="section bulk-final-cta">
         <div className="container">
-          <AnimatedSection className="bulk-cta__inner">
-            <h2 className="font-serif bulk-cta__title">Ready to Place a Bulk Furniture Order?</h2>
-            <p className="bulk-cta__desc">
-              Connect directly with our B2B sales team on WhatsApp. Share your requirements, quantities, material preference, and timelines — we'll send a custom wholesale quotation within 24&nbsp;hours.
+          <AnimatedSection className="bulk-final-cta__inner">
+            <div className="bulk-final-cta__grain" />
+            <motion.h2
+              className="font-serif bulk-final-cta__title"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Ready to Place a<br />Bulk Furniture Order?
+            </motion.h2>
+            <p className="bulk-final-cta__desc">
+              Share your requirements, quantities &amp; timelines — we'll send a custom wholesale quotation within 24&nbsp;hours.
             </p>
-            <div className="bulk-cta__actions">
-              <WhatsAppButton message="Hi Furniture Hub team! I'm interested in placing a bulk furniture order for a commercial project. Can we discuss wholesale pricing and availability?" className="btn-lg">
+            <div className="bulk-final-cta__actions">
+              <WhatsAppButton message="Hi Furniture Hub team! I'm interested in placing a bulk furniture order. Can we discuss wholesale pricing?" className="btn-lg">
                 Chat with B2B Sales on WhatsApp
               </WhatsAppButton>
+              <a href="tel:+919580659559" className="btn btn-outline-light btn-lg">
+                📞 Call +91 95806 59559
+              </a>
             </div>
+            <p className="bulk-final-cta__trust">Trusted by 2500+ clients across 150+ Indian cities</p>
           </AnimatedSection>
         </div>
       </section>
