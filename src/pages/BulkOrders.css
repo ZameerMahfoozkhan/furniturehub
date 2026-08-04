@@ -3,7 +3,7 @@
    ════════════════════════════════════════════════════════ */
 
 .bulk-page {
-  padding-top: var(--space-4xl);
+  /* padding-top removed to allow hero to underlap navbar */
 }
 
 /* ═══════════════════════════════════════
@@ -15,6 +15,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  padding-top: 80px;
 }
 
 .bulk-hero__bg {
@@ -625,12 +626,23 @@
 }
 
 .faq-item {
-  padding: var(--space-xl) 0;
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  padding: var(--space-xl) var(--space-2xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-md);
+  transition: transform var(--duration-base) var(--ease-out-expo),
+              box-shadow var(--duration-base) var(--ease-out-expo);
+}
+
+.faq-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -10px rgba(74, 46, 31, 0.1);
+  border-color: var(--color-accent-muted);
 }
 
 .faq-item:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .faq-item__q {
@@ -639,12 +651,24 @@
   color: var(--color-text-primary);
   margin-bottom: var(--space-sm);
   line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.faq-item__q::before {
+  content: 'Q.';
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: 1.2em;
+  line-height: 1;
 }
 
 .faq-item__a {
   color: var(--color-text-secondary);
   line-height: 1.7;
   font-size: var(--text-sm);
+  padding-left: 2.2rem;
 }
 
 /* ═══════════════════════════════════════
