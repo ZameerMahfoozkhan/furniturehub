@@ -2,6 +2,7 @@
   padding-top: var(--space-4xl);
 }
 
+/* ═══ Hero ═══ */
 .bulk-hero {
   position: relative;
   min-height: 60vh;
@@ -41,7 +42,11 @@
   max-width: 650px;
 }
 
-/* Benefits */
+.bulk-hero__actions {
+  margin-top: var(--space-xl);
+}
+
+/* ═══ Benefits ═══ */
 .bulk-benefits {
   background: var(--color-bg-card);
 }
@@ -84,7 +89,223 @@
   line-height: 1.6;
 }
 
-/* CTA */
+/* ═══ Bulk Products ═══ */
+.bulk-products__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.bulk-product-card {
+  background: var(--color-bg-card);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  transition: transform var(--duration-base) var(--ease-out-expo),
+              box-shadow var(--duration-base) var(--ease-out-expo);
+}
+
+.bulk-product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px -8px rgba(74, 46, 31, 0.12);
+}
+
+.bulk-product-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.bulk-product-card__title {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.bulk-product-card__desc {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+
+.bulk-product-card__tags {
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  opacity: 0.85;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.bulk-products__browse {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-3xl);
+  flex-wrap: wrap;
+}
+
+/* ═══ Industries ═══ */
+.bulk-industries {
+  background: var(--color-bg-card);
+}
+
+.bulk-industries__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-3xl);
+}
+
+.industry-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  transition: transform var(--duration-base) var(--ease-out-expo);
+}
+
+.industry-card:hover {
+  transform: translateY(-4px);
+}
+
+.industry-card__icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.industry-card__title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.industry-card__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ═══ Materials ═══ */
+.bulk-materials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.material-card {
+  background: var(--color-bg-card);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  transition: transform var(--duration-base) var(--ease-out-expo);
+}
+
+.material-card:hover {
+  transform: translateY(-6px);
+}
+
+.material-card__title {
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.material-card__desc {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.material-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.material-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: var(--text-xs);
+  background: rgba(74, 46, 31, 0.08);
+  color: var(--color-accent);
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+/* ═══ Process ═══ */
+.bulk-process {
+  background: var(--color-bg-card);
+}
+
+.bulk-process__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.process-step {
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.process-step__number {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  opacity: 0.25;
+  margin-bottom: var(--space-sm);
+  line-height: 1;
+}
+
+.process-step__title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.process-step__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ═══ FAQ ═══ */
+.bulk-faq__list {
+  max-width: 800px;
+  margin: var(--space-3xl) auto 0;
+}
+
+.faq-item {
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-item__q {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+.faq-item__a {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* ═══ CTA ═══ */
 .bulk-cta__inner {
   position: relative;
   background: var(--gradient-premium);
@@ -124,7 +345,7 @@
 .bulk-cta__desc {
   font-size: var(--text-base);
   color: rgba(255, 255, 255, 0.9);
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto var(--space-xl);
   line-height: 1.5;
 }
@@ -132,4 +353,46 @@
 .bulk-cta__actions {
   display: flex;
   justify-content: center;
+}
+
+/* ═══ Section helpers ═══ */
+.section-subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  max-width: 700px;
+  margin: var(--space-sm) auto 0;
+  line-height: 1.6;
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 768px) {
+  .bulk-hero {
+    min-height: 50vh;
+  }
+
+  .bulk-products__grid,
+  .bulk-industries__grid,
+  .bulk-materials__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bulk-process__steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bulk-cta__inner {
+    border-radius: 32px;
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .bulk-products__browse {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .bulk-process__steps {
+    grid-template-columns: 1fr;
+  }
 }
