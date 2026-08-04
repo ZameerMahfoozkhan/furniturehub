@@ -4,7 +4,7 @@ import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection
 import ImageCarousel from '../components/ImageCarousel';
 import ProductCard from '../components/ProductCard';
 import WhatsAppButton from '../components/WhatsAppButton';
-import { getProductBySlug, getRelatedProducts, BRAND_NAME, PHONE_DISPLAY } from '../data/products';
+import { getProductBySlug, getRelatedProducts, PHONE_DISPLAY } from '../data/products';
 import './ProductDetail.css';
 
 export default function ProductDetail() {
@@ -22,6 +22,19 @@ export default function ProductDetail() {
     }
   }, [product]);
 
+  // SEO: Dynamic meta description
+  useEffect(() => {
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && product) {
+      metaDesc.setAttribute('content', `Buy ${product.name} online from Furniture Hub Ayodhya. ${product.material} furniture with ${product.specs?.warranty || 'warranty'}. ${product.specs?.deliveryEstimate || 'Pan India delivery'}. Order via WhatsApp.`);
+    }
+    return () => {
+      if (metaDesc) {
+        metaDesc.setAttribute('content', 'Buy premium Sheesham, Teak & Rosewood solid wood furniture and affordable engineered wood furniture online from Ayodhya. Delivered pan-India.');
+      }
+    };
+  }, [product]);
+
   if (!product) {
     return (
       <div className="not-found section container">
@@ -31,7 +44,6 @@ export default function ProductDetail() {
       </div>
     );
   }
-
 
   const related = getRelatedProducts(product);
   const isPremium = product.category === 'premium';
@@ -47,18 +59,6 @@ export default function ProductDetail() {
     ? `Hi, I'm interested in ${product.name} in ${selectedVariant} finish. Can you share more details?`
     : `Hi, I'm interested in ${product.name}. Can you share more details?`;
 
-  // SEO: Dynamic meta description
-  useEffect(() => {
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc && product) {
-      metaDesc.setAttribute('content', `Buy ${product.name} online from Furniture Hub Ayodhya. ${product.material} furniture with ${product.specs?.warranty || 'warranty'}. ${product.specs?.deliveryEstimate || 'Pan India delivery'}. Order via WhatsApp.`);
-    }
-    return () => {
-      if (metaDesc) {
-        metaDesc.setAttribute('content', 'Buy premium Sheesham, Teak & Rosewood solid wood furniture and affordable engineered wood furniture online from Ayodhya. Delivered pan-India.');
-      }
-    };
-  }, [product]);
 
   // SEO: Product structured data
   const productJsonLd = product ? {

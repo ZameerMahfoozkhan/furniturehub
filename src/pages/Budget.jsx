@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import ProductCard from '../components/ProductCard';
-import { budgetProducts, BRAND_NAME } from '../data/products';
+import { budgetProducts } from '../data/products';
 import './RangePage.css';
 
 const finishTypes = ['All', 'Walnut Laminate', 'Oak Laminate', 'White Laminate', 'Beech Laminate', 'Teak Laminate', 'Maple Laminate', 'Wenge Laminate'];

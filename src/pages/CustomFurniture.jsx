@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer, staggerItem } from '../components/AnimatedSection';
 import WhatsAppButton from '../components/WhatsAppButton';
-import { BRAND_NAME } from '../data/products';
+
 import './CustomFurniture.css';
 
 const steps = [

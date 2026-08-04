@@ -2,16 +2,14 @@
    Bulk Orders — Premium Conversion-Focused Page
    ════════════════════════════════════════════════════════ */
 
-.bulk-page {
-  /* padding-top removed to allow hero to underlap navbar */
-}
+/* padding-top removed from .bulk-page to allow hero to underlap navbar */
 
 /* ═══════════════════════════════════════
    HERO — Full-bleed parallax
    ═══════════════════════════════════════ */
 .bulk-hero {
   position: relative;
-  min-height: 90vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -77,9 +75,9 @@
 }
 
 .bulk-hero__title {
-  font-size: clamp(2.5rem, 2rem + 5vw, 5.5rem);
-  line-height: 1.05;
-  margin: 0 0 var(--space-lg);
+  font-size: clamp(2rem, 1.5rem + 4vw, 4.2rem);
+  line-height: 1.1;
+  margin: 0 0 var(--space-md);
   color: #FFFFFF;
   letter-spacing: -0.02em;
 }
@@ -89,11 +87,11 @@
 }
 
 .bulk-hero__subtitle {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
+  line-height: 1.5;
   max-width: 600px;
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
 .bulk-hero__ctas {
@@ -119,9 +117,9 @@
 /* Hero stats */
 .bulk-hero__stats {
   display: flex;
-  gap: var(--space-2xl);
-  margin-top: var(--space-3xl);
-  padding-top: var(--space-xl);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -649,19 +647,61 @@
   font-size: var(--text-lg);
   font-weight: 600;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-sm);
   line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.faq-item__q-text {
   display: flex;
   align-items: flex-start;
   gap: var(--space-sm);
 }
 
-.faq-item__q::before {
+.faq-item__q-text::before {
   content: 'Q.';
   color: var(--color-accent);
   font-family: var(--font-serif);
   font-size: 1.2em;
   line-height: 1;
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+  color: var(--color-accent);
+  transition: transform var(--duration-base) var(--ease-out-expo);
+  margin-top: 4px;
+}
+
+.faq-item--open .faq-item__icon {
+  transform: rotate(180deg);
+}
+
+.faq-item__a-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-base) var(--ease-out-expo), opacity var(--duration-base) var(--ease-out-expo), margin-top var(--duration-base) var(--ease-out-expo);
+  opacity: 0;
+  margin-top: 0;
+}
+
+.faq-item--open .faq-item__a-wrapper {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: var(--space-md);
+}
+
+.faq-item__a-inner {
+  overflow: hidden;
 }
 
 .faq-item__a {
@@ -769,7 +809,7 @@
 
 @media (max-width: 768px) {
   .bulk-hero {
-    min-height: 80vh;
+    min-height: 60vh;
   }
 
   .bulk-hero__stats {

@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import ProductCard from '../components/ProductCard';
-import { premiumProducts, BRAND_NAME } from '../data/products';
+import { premiumProducts } from '../data/products';
 import './RangePage.css';
 
 const woodTypes = ['All', 'Sheesham', 'Teak', 'Mango Wood', 'Rosewood'];

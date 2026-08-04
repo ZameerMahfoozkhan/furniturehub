@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import AnimatedSection from '../components/AnimatedSection';
 import WhatsAppButton from '../components/WhatsAppButton';
 import WhatsAppIcon from '../components/WhatsAppIcon';
-import { BRAND_NAME, EMAIL, PHONE_DISPLAY, WHATSAPP_NUMBER } from '../data/products';
+import { EMAIL, PHONE_DISPLAY, WHATSAPP_NUMBER } from '../data/products';
 import './Contact.css';
 
 export default function Contact() {

@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import WhatsAppButton from '../components/WhatsAppButton';
-import { trustStats } from '../data/products';
+
 import './BulkOrders.css';
 
 /* ── Animated Section ── */
@@ -144,6 +144,7 @@ export default function BulkOrders() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
     document.title = 'Bulk Furniture Supplier in Ayodhya | Wholesale Engineered Wood & Particle Board Furniture for Hotels, Hostels, Offices — Furniture Hub';
@@ -439,10 +440,35 @@ export default function BulkOrders() {
 
           <div className="bulk-faq__list">
             {faqs.map((faq, i) => (
-              <AnimatedSection className="faq-item" delay={i * 0.04} key={i} itemScope itemType="https://schema.org/Question" itemProp="mainEntity">
-                <h3 className="faq-item__q" itemProp="name">{faq.q}</h3>
-                <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
-                  <p className="faq-item__a" itemProp="text">{faq.a}</p>
+              <AnimatedSection className={`faq-item ${openFaq === i ? 'faq-item--open' : ''}`} delay={i * 0.04} key={i} itemScope itemType="https://schema.org/Question" itemProp="mainEntity">
+                <button 
+                  className="faq-item__q" 
+                  itemProp="name"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  aria-expanded={openFaq === i}
+                >
+                  <span className="faq-item__q-text">{faq.q}</span>
+                  <svg
+                    className="faq-item__icon"
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+                <div 
+                  className="faq-item__a-wrapper" 
+                  itemScope 
+                  itemType="https://schema.org/Answer" 
+                  itemProp="acceptedAnswer"
+                >
+                  <div className="faq-item__a-inner">
+                    <p className="faq-item__a" itemProp="text">{faq.a}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}

@@ -7,7 +7,7 @@ import ProductCard from '../components/ProductCard';
 import CountUp from '../components/CountUp';
 import WhatsAppButton from '../components/WhatsAppButton';
 import WhatsAppIcon from '../components/WhatsAppIcon';
-import { products, testimonials, trustStats, BRAND_NAME, TAGLINE } from '../data/products';
+import { products, testimonials, trustStats } from '../data/products';
 import './Home.css';
 
 export default function Home() {
