@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import AnimatedSection, { StaggerContainer, staggerItem } from '../components/AnimatedSection';
 import WhatsAppButton from '../components/WhatsAppButton';
 
@@ -59,15 +60,31 @@ const faqs = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+};
+
 export default function CustomFurniture() {
   const [openFaq, setOpenFaq] = useState(null);
 
-  useEffect(() => {
-    document.title = `Custom Furniture Maker in Ayodhya — Made-to-Order Solid Wood & Engineered Wood | Furniture Hub`;
-  }, []);
-
   return (
     <div className="custom-page">
+      <SEO 
+        title="Custom Made Furniture Online | Bespoke & Tailor-Made Designs"
+        description="Bring your dream furniture to life! We craft custom, made-to-order furniture tailored to your exact dimensions and wood preferences. Start designing with us today."
+        keywords="custom furniture, bespoke furniture, made to order furniture, custom wood furniture"
+        schema={faqSchema}
+        path="/custom-furniture"
+      />
       {/* Hero */}
       <section className="custom-hero wood-texture">
         <div className="custom-hero__bg" />

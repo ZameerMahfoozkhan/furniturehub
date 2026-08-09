@@ -1,5 +1,5 @@
 # Furniture Hub Ayodhya — Robots.txt
-# https://furniturehubayodhya.online
+# https://www.furniturehubayodhya.online
 
 User-agent: *
 Allow: /
@@ -8,7 +8,7 @@ Disallow: /node_modules/
 Disallow: /*.json$
 
 # Sitemaps
-Sitemap: https://furniturehubayodhya.online/sitemap.xml
+Sitemap: https://www.furniturehubayodhya.online/sitemap.xml
 
 # Crawl-delay for polite bots
 User-agent: AhrefsBot
@@ -19,6 +19,3 @@ Crawl-delay: 10
 
 User-agent: MJ12bot
 Crawl-delay: 10
-
-# Host directive
-Host: https://furniturehubayodhya.online

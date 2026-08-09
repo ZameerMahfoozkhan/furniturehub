@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import AnimatedSection from '../components/AnimatedSection';
 import WhatsAppButton from '../components/WhatsAppButton';
 import WhatsAppIcon from '../components/WhatsAppIcon';
@@ -7,12 +8,14 @@ import { EMAIL, PHONE_DISPLAY, WHATSAPP_NUMBER } from '../data/products';
 import './Contact.css';
 
 export default function Contact() {
-  useEffect(() => {
-    document.title = `Contact Furniture Hub Ayodhya — WhatsApp Order, Call +91 95806 59559 | Furniture Shop Ayodhya`;
-  }, []);
-
   return (
     <div className="contact-page">
+      <SEO 
+        title="Contact Us | Furniture Hub Ayodhya — Call or WhatsApp Today"
+        description="Got questions or ready to order? Contact Furniture Hub Ayodhya via WhatsApp or phone. We're here to help with custom designs, bulk orders, and pan-India delivery."
+        keywords="contact furniture hub ayodhya, furniture hub ayodhya phone number, buy furniture on whatsapp"
+        path="/contact"
+      />
       {/* Hero */}
       <section className="contact-hero">
         <div className="contact-hero__bg" />

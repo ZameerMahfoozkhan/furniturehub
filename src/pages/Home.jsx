@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import AnimatedSection, { StaggerContainer, staggerItem } from '../components/AnimatedSection';
 import TrustBar from '../components/TrustBar';
 import ProductCard from '../components/ProductCard';
@@ -10,11 +11,87 @@ import WhatsAppIcon from '../components/WhatsAppIcon';
 import { products, testimonials, trustStats } from '../data/products';
 import './Home.css';
 
-export default function Home() {
-  useEffect(() => {
-    document.title = `Furniture Hub Ayodhya — Buy Solid Wood & Budget Furniture Online | Pan India Delivery`;
-  }, []);
+const homeSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FurnitureStore",
+    "name": "Furniture Hub Ayodhya",
+    "alternateName": "Furniture Hub",
+    "url": "https://www.furniturehubayodhya.online",
+    "logo": "https://www.furniturehubayodhya.online/logo.png",
+    "image": "https://www.furniturehubayodhya.online/social_share.png",
+    "description": "Handcrafted solid wood and affordable engineered wood furniture from Ayodhya, delivered pan-India. Beds, sofas, wardrobes, TV units, mandirs, office desks, and custom furniture.",
+    "telephone": "+919580659559",
+    "email": "furniturehubayodhya@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ayodhya",
+      "addressLocality": "Ayodhya",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "224001",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 26.7922,
+      "longitude": 82.1998
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "India"
+    },
+    "priceRange": "₹₹",
+    "currenciesAccepted": "INR",
+    "paymentAccepted": "Cash, UPI, Bank Transfer",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "21:00"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Furniture Hub Ayodhya",
+    "url": "https://www.furniturehubayodhya.online",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.furniturehubayodhya.online/budget?category={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Furniture Hub Ayodhya",
+    "image": "https://www.furniturehubayodhya.online/social_share.png",
+    "@id": "https://www.furniturehubayodhya.online",
+    "url": "https://www.furniturehubayodhya.online",
+    "telephone": "+919580659559",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ayodhya",
+      "addressLocality": "Ayodhya",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "224001",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 26.7922,
+      "longitude": 82.1998
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "21:00"
+    }
+  }
+];
 
+export default function Home() {
   const budgetItems = products.filter(p => p.category === 'budget');
   const premiumItems = products.filter(p => p.category === 'premium');
   
@@ -30,7 +107,14 @@ export default function Home() {
   const doubledTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <div className="home">
+    <div className="home-page">
+      <SEO 
+        title="Best Furniture Shop in Ayodhya | Buy Solid Wood & Budget Furniture"
+        description="Shop premium Sheesham, Teak & affordable engineered wood furniture directly from the factory. Upgrade your home with Furniture Hub Ayodhya. Pan-India Delivery."
+        keywords="furniture shop ayodhya, buy furniture online india, solid wood furniture, engineered wood furniture"
+        path="/"
+        schema={homeSchemas}
+      />
       {/* ─── Hero ─── */}
       <section className="hero">
         <div className="hero__bg" />

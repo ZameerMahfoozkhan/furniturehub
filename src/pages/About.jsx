@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import AnimatedSection, { StaggerContainer, staggerItem } from '../components/AnimatedSection';
 import CountUp from '../components/CountUp';
 import { BRAND_NAME, trustStats } from '../data/products';
@@ -22,12 +23,14 @@ const values = [
 ];
 
 export default function About() {
-  useEffect(() => {
-    document.title = `About Furniture Hub Ayodhya — Handcrafted Furniture Since 2010 | Artisan Furniture Maker in UP`;
-  }, []);
-
   return (
     <div className="about-page">
+      <SEO 
+        title="Our Story | Furniture Hub Ayodhya — Handcrafted Since 2010"
+        description="Discover the journey of Furniture Hub Ayodhya. From a local workshop to a trusted Pan-India furniture brand, learn how we craft quality furniture for every home."
+        keywords="about furniture hub ayodhya, furniture makers ayodhya, zameer mahfooz khan, adnan khan"
+        path="/about"
+      />
       {/* Hero */}
       <section className="about-hero wood-texture">
         <div className="about-hero__bg" />

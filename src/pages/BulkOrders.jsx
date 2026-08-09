@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
 
 import './BulkOrders.css';
@@ -139,6 +140,19 @@ const faqs = [
   { q: 'Do you offer budget furniture for rental properties?', a: 'Yes. Our budget range is specifically designed for rental properties, PG accommodations, and serviced apartments — durable, cost-effective engineered wood and particle board furniture.' },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+};
+
 export default function BulkOrders() {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -146,16 +160,15 @@ export default function BulkOrders() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const [openFaq, setOpenFaq] = useState(null);
 
-  useEffect(() => {
-    document.title = 'Bulk Furniture Supplier in Ayodhya | Wholesale Engineered Wood & Particle Board Furniture for Hotels, Hostels, Offices — Furniture Hub';
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute('content', 'Furniture Hub Ayodhya — India\'s trusted bulk furniture supplier & wholesale furniture manufacturer. Engineered wood & particle board beds, wardrobes, tables, sofas for hotels, hostels, PG rooms, offices, schools, builders. Factory-direct pricing, pan-India delivery.');
-    }
-  }, []);
-
   return (
     <div className="bulk-page" itemScope itemType="https://schema.org/LocalBusiness">
+      <SEO 
+        title="Wholesale & Bulk Furniture Supplier | B2B Prices for Hotels & PGs"
+        description="Need furniture for your hotel, PG, or school? Get exclusive B2B wholesale discounts on solid & engineered wood furniture from Furniture Hub Ayodhya. Contact us today!"
+        keywords="bulk furniture, wholesale furniture, hotel furniture supplier, hostel beds bulk, office furniture wholesale"
+        schema={faqSchema}
+        path="/bulk-orders"
+      />
       <meta itemProp="name" content="Furniture Hub Ayodhya — Bulk Furniture Supplier" />
       <meta itemProp="description" content="Wholesale bulk furniture supplier in Ayodhya — engineered wood and particle board furniture for hotels, offices, hostels, schools, and builders." />
       <meta itemProp="areaServed" content="India" />

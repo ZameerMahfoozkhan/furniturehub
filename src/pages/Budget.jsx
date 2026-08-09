@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import ProductCard from '../components/ProductCard';
 import { budgetProducts } from '../data/products';
@@ -19,10 +20,6 @@ export default function Budget() {
   const [finishFilter, setFinishFilter] = useState(currentFinish);
   const [typeFilter, setTypeFilter] = useState(currentCategory);
   const [sortBy, setSortBy] = useState('default');
-
-  useEffect(() => {
-    document.title = `Affordable Engineered Wood Furniture Online — Beds, Wardrobes, TV Units & More | Furniture Hub Ayodhya`;
-  }, []);
 
   useEffect(() => {
     const cat = searchParams.get('category') || searchParams.get('type') || 'All';
@@ -70,6 +67,12 @@ export default function Budget() {
 
   return (
     <div className="range-page range-page--budget">
+      <SEO 
+        title="Buy Affordable Engineered Wood Furniture | Beds, Wardrobes, TV Units"
+        description="Looking for cheap yet durable furniture? Shop our budget-friendly engineered wood collection. Get beds, wardrobes & shoe racks at factory prices. Pan-India Delivery."
+        keywords="cheap furniture, engineered wood furniture, budget furniture, partical board furniture, affordable beds"
+        path="/budget"
+      />
       {/* Hero */}
       <section className="range-hero range-hero--budget">
         <div className="range-hero__bg" />

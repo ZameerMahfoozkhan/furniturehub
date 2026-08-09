@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import ImageCarousel from '../components/ImageCarousel';
 import ProductCard from '../components/ProductCard';
@@ -15,25 +16,6 @@ export default function ProductDetail() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
-
-  useEffect(() => {
-    if (product) {
-      document.title = `${product.name} — Buy ${product.material} Furniture Online | Furniture Hub Ayodhya`;
-    }
-  }, [product]);
-
-  // SEO: Dynamic meta description
-  useEffect(() => {
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc && product) {
-      metaDesc.setAttribute('content', `Buy ${product.name} online from Furniture Hub Ayodhya. ${product.material} furniture with ${product.specs?.warranty || 'warranty'}. ${product.specs?.deliveryEstimate || 'Pan India delivery'}. Order via WhatsApp.`);
-    }
-    return () => {
-      if (metaDesc) {
-        metaDesc.setAttribute('content', 'Buy premium Sheesham, Teak & Rosewood solid wood furniture and affordable engineered wood furniture online from Ayodhya. Delivered pan-India.');
-      }
-    };
-  }, [product]);
 
   if (!product) {
     return (
@@ -113,12 +95,13 @@ export default function ProductDetail() {
 
   return (
     <>
-      {productJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-        />
-      )}
+      <SEO 
+        title={`Buy ${product.name} | Premium ${product.material} Furniture Online`}
+        description={`Upgrade your home with the ${product.name}. High-quality ${product.material} furniture backed by ${product.specs?.warranty || 'our guarantee'}. Enjoy ${product.specs?.deliveryEstimate || 'Pan India delivery'}! Order now on WhatsApp.`}
+        keywords={`${product.name}, buy furniture online, ${product.material} furniture, online furniture store, furniture hub ayodhya`}
+        schema={productJsonLd ? [productJsonLd] : []}
+        path={`/product/${product.slug}`}
+      />
     <div className={`product-detail ${isPremium ? '' : 'product-detail--budget'}`} data-theme={isPremium ? undefined : 'budget'}>
       {/* Breadcrumb */}
       <div className="breadcrumb container">

@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import ProductCard from '../components/ProductCard';
 import { premiumProducts } from '../data/products';
@@ -19,10 +20,6 @@ export default function Premium() {
   const [woodFilter, setWoodFilter] = useState(currentWood);
   const [typeFilter, setTypeFilter] = useState(currentCategory);
   const [sortBy, setSortBy] = useState('default');
-
-  useEffect(() => {
-    document.title = `Premium Sheesham, Teak & Rosewood Furniture Online — Solid Wood Collection | Furniture Hub Ayodhya`;
-  }, []);
 
   useEffect(() => {
     const cat = searchParams.get('category') || searchParams.get('type') || 'All';
@@ -70,6 +67,12 @@ export default function Premium() {
 
   return (
     <div className="range-page range-page--premium" data-theme="premium">
+      <SEO 
+        title="Premium Solid Wood Furniture | Handcrafted Sheesham & Teak"
+        description="Discover luxury handcrafted solid wood furniture. Shop premium Sheesham, Teak, and Rosewood beds, sofas & dining sets. Built to last generations. Buy online today!"
+        keywords="solid wood furniture, premium furniture, sheesham wood beds, teak wood dining, rosewood furniture"
+        path="/premium"
+      />
       {/* Hero */}
       <section className="range-hero range-hero--premium wood-texture">
         <div className="range-hero__bg" />
