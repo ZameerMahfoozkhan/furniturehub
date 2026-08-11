@@ -15,6 +15,7 @@ import Contact from './pages/Contact';
 import BulkOrders from './pages/BulkOrders';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import RefundPolicy from './pages/RefundPolicy';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 function ScrollToTop() {
@@ -48,6 +49,7 @@ function AnimatedRoutes() {
           <Route path="/bulk-orders" element={<BulkOrders />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </motion.div>

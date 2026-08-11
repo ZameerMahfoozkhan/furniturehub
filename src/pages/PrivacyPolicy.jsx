@@ -3,15 +3,17 @@ import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import WhatsAppButton from '../components/WhatsAppButton';
 import { BRAND_NAME, EMAIL } from '../data/products';
+import SEO from '../components/SEO';
 import './LegalPage.css';
 
 export default function PrivacyPolicy() {
-  useEffect(() => {
-    document.title = `Privacy Policy | ${BRAND_NAME}`;
-  }, []);
-
   return (
     <div className="legal-page">
+      <SEO 
+        title={`Privacy Policy | ${BRAND_NAME}`}
+        description="Learn how Furniture Hub Ayodhya handles and protects your personal information and custom furniture order details."
+        path="/privacy-policy"
+      />
       {/* Hero */}
       <section className="legal-hero">
         <div className="container legal-hero__content">

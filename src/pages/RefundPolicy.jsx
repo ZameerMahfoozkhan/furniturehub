@@ -3,15 +3,17 @@ import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer } from '../components/AnimatedSection';
 import WhatsAppButton from '../components/WhatsAppButton';
 import { BRAND_NAME, EMAIL } from '../data/products';
+import SEO from '../components/SEO';
 import './LegalPage.css';
 
 export default function RefundPolicy() {
-  useEffect(() => {
-    document.title = `Refund & Cancellation Policy | ${BRAND_NAME}`;
-  }, []);
-
   return (
     <div className="legal-page">
+      <SEO 
+        title={`Refund & Cancellation Policy | ${BRAND_NAME}`}
+        description="Read Furniture Hub Ayodhya's transparent policy on transit damage protection, order cancellations, and refunds."
+        path="/refund-policy"
+      />
       {/* Hero */}
       <section className="legal-hero">
         <div className="container legal-hero__content">

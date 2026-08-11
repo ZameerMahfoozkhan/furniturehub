@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { products } from '../src/data/products.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,8 +52,32 @@ const routes = [
     path: '/contact',
     title: 'Contact Us | Furniture Hub Ayodhya — Call or WhatsApp Today',
     description: 'Got questions or ready to order? Contact Furniture Hub Ayodhya via WhatsApp or phone. We\'re here to help with custom designs, bulk orders, and pan-India delivery.'
+  },
+  {
+    path: '/privacy-policy',
+    title: 'Privacy Policy | Furniture Hub Ayodhya',
+    description: 'Learn how Furniture Hub Ayodhya handles and protects your personal information and custom furniture order details.'
+  },
+  {
+    path: '/refund-policy',
+    title: 'Refund & Cancellation Policy | Furniture Hub Ayodhya',
+    description: 'Read Furniture Hub Ayodhya\'s transparent policy on transit damage protection, order cancellations, and refunds.'
+  },
+  {
+    path: '/404',
+    title: '404 - Page Not Found | Furniture Hub Ayodhya',
+    description: 'The page you are looking for does not exist.'
   }
 ];
+
+// Dynamically add all product routes
+products.forEach(product => {
+  routes.push({
+    path: `/product/${product.slug}`,
+    title: `${product.name} | Furniture Hub Ayodhya`,
+    description: product.description.substring(0, 160).replace(/\n/g, ' ') + '...',
+  });
+});
 
 routes.forEach(route => {
   let html = template;
