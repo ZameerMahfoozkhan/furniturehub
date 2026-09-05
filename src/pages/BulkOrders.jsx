@@ -90,10 +90,10 @@ const bulkCategories = [
 
 /* ── Data: Industries ── */
 const industries = [
-  { icon: '🏨', title: 'Hotels & Resorts', desc: 'Complete room packages — beds, wardrobes, desks, TV units & sofas.' },
-  { icon: '🏠', title: 'Hostels & PG Rooms', desc: 'Budget beds, wardrobes & study tables for shared living spaces.' },
-  { icon: '🏢', title: 'Offices & Co-Working', desc: 'Executive desks, reception sofas, meeting tables & cabinets.' },
-  { icon: '🏫', title: 'Schools & Colleges', desc: 'Classroom tables, library furniture, and hostel beds at scale.' },
+  { icon: '🏨', title: 'Hotels & Resorts', desc: 'Complete room packages — beds, wardrobes, desks, TV units & sofas.', link: '/hotels-and-resorts' },
+  { icon: '🏠', title: 'Hostels & PG Rooms', desc: 'Budget beds, wardrobes & study tables for shared living spaces.', link: '/hostels-and-pg' },
+  { icon: '🏢', title: 'Offices & Co-Working', desc: 'Executive desks, reception sofas, meeting tables & cabinets.', link: '/offices-and-coworking' },
+  { icon: '🏫', title: 'Schools & Colleges', desc: 'Classroom tables, library furniture, and hostel beds at scale.', link: '/schools-and-colleges' },
   { icon: '🏗️', title: 'Builders & Apartments', desc: 'Flat-ready packages — bed, wardrobe, TV unit, shoe rack per unit.' },
   { icon: '☕', title: 'Cafés & Restaurants', desc: 'Dining tables, counter furniture & accent seating for F&B.' },
   { icon: '🏡', title: 'Guest Houses', desc: 'Complete guest room sets — budget and premium options.' },
@@ -375,16 +375,28 @@ export default function BulkOrders() {
           </AnimatedSection>
 
           <div className="bulk-industries__grid">
-            {industries.map((ind, i) => (
-              <AnimatedSection className="industry-card" delay={i * 0.05} key={ind.title}>
-                <span className="industry-card__icon">{ind.icon}</span>
-                <div className="industry-card__body">
-                  <h3 className="industry-card__title">{ind.title}</h3>
-                  <p className="industry-card__desc">{ind.desc}</p>
-                </div>
-                <span className="industry-card__arrow">→</span>
-              </AnimatedSection>
-            ))}
+            {industries.map((ind, i) => {
+              const content = (
+                <>
+                  <span className="industry-card__icon">{ind.icon}</span>
+                  <div className="industry-card__body">
+                    <h3 className="industry-card__title">{ind.title}</h3>
+                    <p className="industry-card__desc">{ind.desc}</p>
+                  </div>
+                  <span className="industry-card__arrow">→</span>
+                </>
+              );
+
+              return (
+                <AnimatedSection className="industry-card" delay={i * 0.05} key={ind.title}>
+                  {ind.link ? (
+                    <Link to={ind.link} style={{ display: 'contents', color: 'inherit', textDecoration: 'none' }}>
+                      {content}
+                    </Link>
+                  ) : content}
+                </AnimatedSection>
+              );
+            })}
           </div>
         </div>
       </section>

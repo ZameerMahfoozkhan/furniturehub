@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { products } from '../src/data/products.js';
+import { targetCities } from '../src/data/seoLocations.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -67,6 +68,31 @@ const routes = [
     path: '/404',
     title: '404 - Page Not Found | Furniture Hub Ayodhya',
     description: 'The page you are looking for does not exist.'
+  },
+  {
+    path: '/hotels-and-resorts',
+    title: 'Hotel & Resort Furniture Manufacturer in Ayodhya | Bulk Orders',
+    description: 'Premium bulk furniture for hotels and resorts. Factory-direct beds, wardrobes, TV units, and lounge seating manufactured in Ayodhya.'
+  },
+  {
+    path: '/hostels-and-pg',
+    title: 'Hostel & PG Furniture Manufacturer in Ayodhya | Bulk Beds & Wardrobes',
+    description: 'Bulk hostel and PG room furniture in Ayodhya. Durable bunk beds, single beds, lockable wardrobes, and study tables at wholesale prices.'
+  },
+  {
+    path: '/offices-and-coworking',
+    title: 'Office & Co-Working Furniture in Ayodhya | Bulk Desks & Chairs',
+    description: 'Transform your workspace with our ergonomic and modular office furniture. Bulk workstations, executive desks, and conference tables in Ayodhya.'
+  },
+  {
+    path: '/schools-and-colleges',
+    title: 'School & College Furniture Manufacturer in Ayodhya | Desks & Benches',
+    description: 'Factory-direct educational furniture. We supply bulk classroom desks, benches, library racks, and playground furniture in Ayodhya.'
+  },
+  {
+    path: '/sitemap',
+    title: 'Visual Sitemap | Furniture Hub Ayodhya',
+    description: 'Navigate through all pages of Furniture Hub Ayodhya. Find premium, budget, custom furniture, and B2B solutions easily.'
   }
 ];
 
@@ -76,6 +102,27 @@ products.forEach(product => {
     path: `/product/${product.slug}`,
     title: `${product.name} | Furniture Hub Ayodhya`,
     description: product.description.substring(0, 160).replace(/\n/g, ' ') + '...',
+    image: product.images && product.images.length > 0 ? product.images[0].src : null,
+    ogType: 'product'
+  });
+});
+
+// Dynamically add programmatic SEO city routes
+const industries = [
+  { slug: 'school-and-college-furniture', titlePrefix: 'School & College Furniture Manufacturer in', descPrefix: 'Factory-direct educational furniture. We supply bulk classroom desks, benches, library racks, and playground furniture in' },
+  { slug: 'hotel-and-resort-furniture', titlePrefix: 'Hotel & Resort Furniture Manufacturer in', descPrefix: 'Premium bulk furniture for hotels and resorts. Factory-direct beds, wardrobes, TV units, and lounge seating manufactured for' },
+  { slug: 'office-and-coworking-furniture', titlePrefix: 'Office & Co-Working Furniture in', descPrefix: 'Transform your workspace with our ergonomic and modular office furniture. Bulk workstations, executive desks, and conference tables in' },
+  { slug: 'hostel-and-pg-furniture', titlePrefix: 'Hostel & PG Furniture Manufacturer in', descPrefix: 'Bulk hostel and PG room furniture in' }
+];
+
+targetCities.forEach(city => {
+  const cityLower = city.toLowerCase();
+  industries.forEach(ind => {
+    routes.push({
+      path: `/${ind.slug}-in-${cityLower}`,
+      title: `${ind.titlePrefix} ${city} | Furniture Hub`,
+      description: `${ind.descPrefix} ${city}.`
+    });
   });
 });
 
@@ -87,6 +134,22 @@ routes.forEach(route => {
   
   // Replace description
   html = html.replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${route.description}" />`);
+
+  // Replace Open Graph / Twitter Tags
+  html = html.replace(/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${route.title}" />`);
+  html = html.replace(/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${route.description}" />`);
+  html = html.replace(/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${route.title}" />`);
+  html = html.replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${route.description}" />`);
+
+  if (route.image) {
+    const imageUrl = route.image.startsWith('http') ? route.image : `https://www.furniturehubayodhya.online${route.image}`;
+    html = html.replace(/<meta property="og:image" content=".*?" \/>/, `<meta property="og:image" content="${imageUrl}" />`);
+    html = html.replace(/<meta name="twitter:image" content=".*?" \/>/, `<meta name="twitter:image" content="${imageUrl}" />`);
+  }
+
+  if (route.ogType) {
+    html = html.replace(/<meta property="og:type" content=".*?" \/>/, `<meta property="og:type" content="${route.ogType}" />`);
+  }
 
   // Update canonical URL if it exists
   const canonicalPath = route.path === '/' ? '' : route.path;

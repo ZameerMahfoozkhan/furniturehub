@@ -13,9 +13,15 @@ import CustomFurniture from './pages/CustomFurniture';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import BulkOrders from './pages/BulkOrders';
+import HotelsAndResorts from './pages/HotelsAndResorts';
+import HostelsAndPG from './pages/HostelsAndPG';
+import OfficesAndCoworking from './pages/OfficesAndCoworking';
+import SchoolsAndColleges from './pages/SchoolsAndColleges';
+import Sitemap from './pages/Sitemap';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import RefundPolicy from './pages/RefundPolicy';
 import NotFound from './pages/NotFound';
+import LocationSEO from './pages/LocationSEO';
 import './App.css';
 
 function ScrollToTop() {
@@ -47,8 +53,14 @@ function AnimatedRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/bulk-orders" element={<BulkOrders />} />
+          <Route path="/hotels-and-resorts" element={<HotelsAndResorts />} />
+          <Route path="/hostels-and-pg" element={<HostelsAndPG />} />
+          <Route path="/offices-and-coworking" element={<OfficesAndCoworking />} />
+          <Route path="/schools-and-colleges" element={<SchoolsAndColleges />} />
+          <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/:slug" element={<LocationSEO />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
