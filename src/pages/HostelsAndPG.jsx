@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
+import { cityData } from '../data/seoLocations';
 import './IndustryPage.css';
 
 /* ── Animated Section ── */
@@ -91,18 +92,44 @@ export default function HostelsAndPG({ city = 'Ayodhya' }) {
   const heroY = useTransform(scrollY, [0, 800], [0, 250]);
   const [activeFaq, setActiveFaq] = useState(null);
 
+  const localData = cityData[city] || cityData['Ayodhya'];
+
   const faqs = [
-    { q: 'What materials do you use for bunk beds?', a: 'We offer both powder-coated MS steel and commercial-grade engineered wood depending on your budget and aesthetic preference.' },
-    { q: 'Can you customize dimensions for small PG rooms?', a: 'Yes, we specialize in space-saving furniture and can customize dimensions to fit tight layouts.' },
-    { q: 'Is there a minimum order quantity?', a: 'For PG and hostel furniture, our minimum order quantity starts at 10 sets (bed, wardrobe, table).' },
+    { q: 'Can you manufacture custom-sized bunk beds for small rooms?', a: 'Yes, we can customize the dimensions of our metal and wooden bunk beds to maximize space in your PG.' },
+    { q: 'Do your hostel beds come with storage?', a: 'We offer options for under-bed storage drawers and attached study shelves.' },
+    { q: 'What is the lead time for 100 hostel beds?', a: 'For a bulk order of 100 units, we generally require 2-3 weeks for manufacturing and delivery.' },
   ];
+
+  if (localData && localData.faq) {
+    const [q, a] = localData.faq.split('? ');
+    if (q && a) {
+      faqs.push({ q: q + '?', a: a });
+    }
+  }
+
+  const schema = localData && localData.coordinates ? {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `Furniture Hub - ${city} Service Area`,
+    "image": "https://furniturehubayodhya.online/hero.png",
+    "areaServed": {
+      "@type": "City",
+      "name": city
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": localData.coordinates.split(',')[0].trim(),
+      "longitude": localData.coordinates.split(',')[1].trim()
+    }
+  } : null;
 
   return (
     <div className="industry-page industry-page--hostel">
       <SEO 
-        title={`Hostel & PG Furniture Manufacturer in ${city} | Furniture Hub`}
-        description={`Bulk hostel and PG room furniture in ${city}. Durable bunk beds, single beds, lockable wardrobes, and study tables at wholesale prices.`}
-        keywords={`hostel furniture manufacturer, PG furniture ${city}, bulk bunk beds, hostel wardrobes, study tables wholesale`}
+        title={`Hostel & PG Room Furniture Manufacturer in ${city} | Beds & Lockers`}
+        description={`Durable, space-saving furniture for Hostels and PGs. Wholesale bunk beds, study tables, and metal lockers supplied across ${city}.`}
+        keywords={`hostel furniture manufacturer, pg beds ${city}, bunk beds wholesale, metal lockers, study tables bulk`}
+        schema={schema}
       />
 
       <section className="industry-hero">
@@ -118,7 +145,14 @@ export default function HostelsAndPG({ city = 'Ayodhya' }) {
               Durable Furniture for <span>Hostels & PGs</span>
             </h1>
             <p className="industry-hero__desc">
-              Maximize your space and ensure resident comfort with our heavy-duty, space-saving furniture designed for shared living.
+              Maximize your space with our durable, space-saving hostel and PG furniture. 
+              We supply heavy-duty bunk beds, lockers, and study tables for student accommodations.
+              {localData && localData.blurb && (
+                <>
+                  <br /><br />
+                  <span className="local-blurb">{localData.blurb}</span>
+                </>
+              )}
             </p>
             <div className="industry-hero__actions">
               <Link to="/contact" className="btn btn-primary btn-lg">

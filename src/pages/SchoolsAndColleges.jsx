@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
+import { cityData } from '../data/seoLocations';
 import './IndustryPage.css';
 
 /* ── Animated Section ── */
@@ -91,11 +92,36 @@ export default function SchoolsAndColleges({ city = 'Ayodhya' }) {
   const heroY = useTransform(scrollY, [0, 800], [0, 250]);
   const [activeFaq, setActiveFaq] = useState(null);
 
+  const localData = cityData[city] || cityData['Ayodhya'];
+
   const faqs = [
     { q: 'Is the furniture safe for kindergarten kids?', a: 'Yes, our pre-school range features rounded edges, non-toxic paints, and anti-tipping designs.' },
     { q: 'Can we get a sample desk before placing a bulk order?', a: 'Absolutely. We provide physical samples to institutions for approval before commencing bulk production.' },
     { q: 'What materials do you use for school benches?', a: 'We use high-grade tubular steel frames paired with durable engineered wood or solid wood tops for longevity.' },
   ];
+
+  if (localData && localData.faq) {
+    const [q, a] = localData.faq.split('? ');
+    if (q && a) {
+      faqs.push({ q: q + '?', a: a });
+    }
+  }
+
+  const schema = localData && localData.coordinates ? {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `Furniture Hub - ${city} Service Area`,
+    "image": "https://furniturehubayodhya.online/hero.png",
+    "areaServed": {
+      "@type": "City",
+      "name": city
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": localData.coordinates.split(',')[0].trim(),
+      "longitude": localData.coordinates.split(',')[1].trim()
+    }
+  } : null;
 
   return (
     <div className="industry-page industry-page--school">
@@ -103,6 +129,7 @@ export default function SchoolsAndColleges({ city = 'Ayodhya' }) {
         title={`School & College Furniture Manufacturer in ${city} | Desks & Benches`}
         description={`Factory-direct educational furniture. We supply bulk classroom desks, benches, library racks, and playground furniture in ${city}.`}
         keywords={`school furniture manufacturer, college benches ${city}, classroom desks wholesale, library racks, kindergarten furniture`}
+        schema={schema}
       />
 
       <section className="industry-hero">
@@ -118,8 +145,14 @@ export default function SchoolsAndColleges({ city = 'Ayodhya' }) {
               Durable Furniture for <span>Schools & Colleges</span>
             </h1>
             <p className="industry-hero__desc">
-              Foster better learning environments with our ergonomic, safe, and heavy-duty 
-              educational furniture. Designed to withstand generations of students.
+              Outfit your classrooms, labs, and libraries with ergonomic and durable furniture. 
+              We manufacture robust desks, benches, and storage units tailored for educational institutions.
+              {localData && localData.blurb && (
+                <>
+                  <br /><br />
+                  <span className="local-blurb">{localData.blurb}</span>
+                </>
+              )}
             </p>
             <div className="industry-hero__actions">
               <Link to="/contact" className="btn btn-primary btn-lg">

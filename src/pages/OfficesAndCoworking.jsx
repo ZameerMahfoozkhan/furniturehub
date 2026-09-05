@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
+import { cityData } from '../data/seoLocations';
 import './IndustryPage.css';
 
 /* ── Animated Section ── */
@@ -91,18 +92,44 @@ export default function OfficesAndCoworking({ city = 'Ayodhya' }) {
   const heroY = useTransform(scrollY, [0, 800], [0, 250]);
   const [activeFaq, setActiveFaq] = useState(null);
 
+  const localData = cityData[city] || cityData['Ayodhya'];
+
   const faqs = [
-    { q: 'Can you match our corporate brand colors?', a: 'Yes, we can customize desk partitions and chair fabrics to align with your brand identity.' },
-    { q: 'Do your desks include wire management?', a: 'Absolutely. All our workstations and conference tables come with integrated wire managers and cable trays.' },
-    { q: 'What is the warranty on office chairs?', a: 'Our ergonomic chairs come with a 2-year warranty on the hydraulic gas lift, base, and mechanism.' },
+    { q: 'Can you match our corporate brand colors?', a: 'Yes, we offer custom laminates and fabrics to align with your corporate identity.' },
+    { q: 'Do you provide cable management solutions?', a: 'All our workstations and conference tables come with integrated wire managers and power sockets.' },
+    { q: 'What is the warranty on office chairs?', a: 'Our ergonomic mesh chairs come with a standard 1-year warranty on the hydraulic lift and mechanism.' },
   ];
+
+  if (localData && localData.faq) {
+    const [q, a] = localData.faq.split('? ');
+    if (q && a) {
+      faqs.push({ q: q + '?', a: a });
+    }
+  }
+
+  const schema = localData && localData.coordinates ? {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `Furniture Hub - ${city} Service Area`,
+    "image": "https://furniturehubayodhya.online/hero.png",
+    "areaServed": {
+      "@type": "City",
+      "name": city
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": localData.coordinates.split(',')[0].trim(),
+      "longitude": localData.coordinates.split(',')[1].trim()
+    }
+  } : null;
 
   return (
     <div className="industry-page industry-page--office">
       <SEO 
-        title={`Office & Co-Working Furniture in ${city} | Bulk Desks & Chairs`}
-        description={`Transform your workspace with our ergonomic and modular office furniture. Bulk workstations, executive desks, and conference tables in ${city}.`}
-        keywords={`office furniture manufacturer, coworking furniture ${city}, workstation desks, ergonomic chairs wholesale, conference tables`}
+        title={`Office & Co-Working Furniture Manufacturer in ${city} | Desks & Chairs`}
+        description={`Premium ergonomic office furniture. Factory-direct workstations, executive desks, conference tables, and ergonomic chairs for ${city} businesses.`}
+        keywords={`office furniture manufacturer, coworking desks ${city}, ergonomic office chairs, conference tables, corporate furniture bulk`}
+        schema={schema}
       />
 
       <section className="industry-hero">
@@ -118,8 +145,14 @@ export default function OfficesAndCoworking({ city = 'Ayodhya' }) {
               Modern Furniture for <span>Offices & Co-Working</span>
             </h1>
             <p className="industry-hero__desc">
-              Create productive, ergonomic, and inspiring workspaces. We manufacture and supply 
-              modular furniture designed for the modern Indian office.
+              Design productive workspaces with our ergonomic and modular office furniture. 
+              We supply high-quality desks, workstations, and seating for modern corporate environments.
+              {localData && localData.blurb && (
+                <>
+                  <br /><br />
+                  <span className="local-blurb">{localData.blurb}</span>
+                </>
+              )}
             </p>
             <div className="industry-hero__actions">
               <Link to="/contact" className="btn btn-primary btn-lg">

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
+import { cityData } from '../data/seoLocations';
 import './IndustryPage.css';
 
 /* ── Animated Section ── */
@@ -100,11 +101,36 @@ export default function HotelsAndResorts({ city = 'Ayodhya' }) {
   const heroY = useTransform(scrollY, [0, 800], [0, 250]);
   const [activeFaq, setActiveFaq] = useState(null);
 
+  const localData = cityData[city] || cityData['Ayodhya'];
+
   const faqs = [
     { q: 'Do you offer custom designs for boutique hotels?', a: 'Yes, we can customize dimensions, finishes, and fabrics to match your exact interior design theme.' },
     { q: 'What is the standard delivery time for 50 rooms?', a: 'For a 50-room setup, our typical turnaround time is 3-4 weeks from final design approval.' },
     { q: 'Do you provide installation services?', a: 'Yes, we have a dedicated installation team that will assemble and place all furniture on-site.' },
   ];
+
+  if (localData && localData.faq) {
+    const [q, a] = localData.faq.split('? ');
+    if (q && a) {
+      faqs.push({ q: q + '?', a: a });
+    }
+  }
+
+  const schema = localData && localData.coordinates ? {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `Furniture Hub - ${city} Service Area`,
+    "image": "https://furniturehubayodhya.online/hero.png",
+    "areaServed": {
+      "@type": "City",
+      "name": city
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": localData.coordinates.split(',')[0].trim(),
+      "longitude": localData.coordinates.split(',')[1].trim()
+    }
+  } : null;
 
   return (
     <div className="industry-page industry-page--hotel">
@@ -112,6 +138,7 @@ export default function HotelsAndResorts({ city = 'Ayodhya' }) {
         title={`Hotel & Resort Furniture Manufacturer in ${city} | Furniture Hub`}
         description={`Premium bulk furniture for hotels and resorts. Factory-direct beds, wardrobes, TV units, and lounge seating manufactured for ${city}.`}
         keywords={`hotel furniture manufacturer, resort furniture ${city}, hotel beds wholesale, reception sofas, bulk hotel wardrobes`}
+        schema={schema}
       />
 
       {/* ═══ HERO ═══ */}
@@ -131,6 +158,12 @@ export default function HotelsAndResorts({ city = 'Ayodhya' }) {
             <p className="industry-hero__desc">
               Elevate your guest experience with durable, stylish, and factory-direct furniture. 
               From boutique guest houses to luxury resorts, we manufacture comprehensive room solutions.
+              {localData && localData.blurb && (
+                <>
+                  <br /><br />
+                  <span className="local-blurb">{localData.blurb}</span>
+                </>
+              )}
             </p>
             <div className="industry-hero__actions">
               <Link to="/contact" className="btn btn-primary btn-lg">
