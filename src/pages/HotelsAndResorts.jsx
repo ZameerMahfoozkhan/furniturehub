@@ -120,7 +120,7 @@ export default function HotelsAndResorts({ city = 'Ayodhya' }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": `Furniture Hub - ${city} Service Area`,
-    "image": "https://furniturehubayodhya.online/hero.png",
+    "image": "https://furniturehubayodhya.online/hero.webp",
     "areaServed": {
       "@type": "City",
       "name": city

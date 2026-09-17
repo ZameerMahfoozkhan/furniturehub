@@ -18,7 +18,7 @@ const homeSchemas = [
     "name": "Furniture Hub Ayodhya",
     "alternateName": "Furniture Hub",
     "url": "https://www.furniturehubayodhya.online",
-    "logo": "https://www.furniturehubayodhya.online/logo.png",
+    "logo": "https://www.furniturehubayodhya.online/logo.webp",
     "image": "https://www.furniturehubayodhya.online/social_share.png",
     "description": "Handcrafted solid wood and affordable engineered wood furniture from Ayodhya, delivered pan-India. Beds, sofas, wardrobes, TV units, mandirs, office desks, and custom furniture.",
     "telephone": "+919580659559",
@@ -326,13 +326,13 @@ export default function Home() {
             <AnimatedSection direction="right" className="craftsmanship__visual">
               <div className="craftsmanship__image-stack">
                 <div className="craftsmanship__img craftsmanship__img--1">
-                  <div className="craftsmanship__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Artisan-at-Work.png) center/cover' }}>
+                  <div className="craftsmanship__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Artisan-at-Work.webp) center/cover' }}>
                     <span className="font-serif">Artisan at Work</span>
                     <span className="eyebrow">Heritage Craftsmanship</span>
                   </div>
                 </div>
                 <div className="craftsmanship__img craftsmanship__img--2">
-                  <div className="craftsmanship__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Wood-Selection.png) center/cover' }}>
+                  <div className="craftsmanship__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Wood-Selection.webp) center/cover' }}>
                     <span className="font-serif">Wood Selection</span>
                     <span className="eyebrow">Raw Materials</span>
                   </div>

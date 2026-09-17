@@ -23,7 +23,7 @@
       rgba(251, 246, 239, 0.45) 40%,
       rgba(251, 246, 239, 0.55) 100%
     ),
-    url('/hero.png');
+    url('/hero.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -188,7 +188,7 @@
 .range-panel--premium {
   background-image: 
     linear-gradient(rgba(74, 46, 31, 0.45), rgba(74, 46, 31, 0.8)),
-    url('/prmium-home.png');
+    url('/prmium-home.webp');
   background-size: cover;
   background-position: center;
   color: #F5F0E8;
@@ -197,7 +197,7 @@
 .range-panel--budget {
   background-image: 
     linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.8)),
-    url('/budget-hero.png');
+    url('/budget-hero.webp');
   background-size: cover;
   background-position: center;
   color: #F5F0E8;

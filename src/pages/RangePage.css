@@ -22,7 +22,7 @@
 .range-hero--premium .range-hero__bg {
   background-image: 
     linear-gradient(rgba(243, 234, 217, 0.5), rgba(243, 234, 217, 0.7)),
-    url('/premium-hero.png');
+    url('/premium-hero.webp');
   background-size: cover;
   background-position: center;
 }
@@ -35,7 +35,7 @@
 .range-hero--budget .range-hero__bg {
   background-image: 
     linear-gradient(rgba(251, 246, 239, 0.5), rgba(251, 246, 239, 0.7)),
-    url('/budget-hero.png');
+    url('/budget-hero.webp');
   background-size: cover;
   background-position: center;
 }

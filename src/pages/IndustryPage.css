@@ -40,10 +40,10 @@
 }
 
 /* Per-page hero backgrounds */
-.industry-page--hotel .industry-hero__bg { background-image: url('/hero-hotel.jpg'); }
-.industry-page--hostel .industry-hero__bg { background-image: url('/hero-hostel.jpg'); }
-.industry-page--office .industry-hero__bg { background-image: url('/hero-office.jpg'); }
-.industry-page--school .industry-hero__bg { background-image: url('/hero-school.jpg'); }
+.industry-page--hotel .industry-hero__bg { background-image: url('/hero-hotel.webp'); }
+.industry-page--hostel .industry-hero__bg { background-image: url('/hero-hostel.webp'); }
+.industry-page--office .industry-hero__bg { background-image: url('/hero-office.webp'); }
+.industry-page--school .industry-hero__bg { background-image: url('/hero-school.webp'); }
 
 .industry-hero__overlay {
   position: absolute;

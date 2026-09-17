@@ -42,7 +42,7 @@ export default function Header() {
       <header className={`header ${isScrolled ? 'header--scrolled' : ''} ${isMobileOpen ? 'header--menu-open' : ''}`}>
         <div className="header__inner container">
           <Link to="/" className="header__logo font-serif" aria-label="Home">
-            <img src="/logo.png" alt="Furniture Hub Ayodhya Logo" className="header__logo-img" />
+            <img src="/logo.webp" alt="Furniture Hub Ayodhya Logo" className="header__logo-img" />
           </Link>
 
           <nav className="header__nav" aria-label="Main navigation">

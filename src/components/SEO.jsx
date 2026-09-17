@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-export default function SEO({ title, description, keywords, schema, path = "", image = "/hero.png", ogType = "website" }) {
+export default function SEO({ title, description, keywords, schema, path = "", image = "/hero.webp", ogType = "website" }) {
   const siteUrl = `https://www.furniturehubayodhya.online${path}`;
   const imageUrl = image.startsWith('http') ? image : `https://www.furniturehubayodhya.online${image}`;
   

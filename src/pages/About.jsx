@@ -84,7 +84,7 @@ export default function About() {
             </AnimatedSection>
             <AnimatedSection direction="right" className="brand-story__visual">
               <div className="brand-story__img">
-                <div className="brand-story__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Artisan-at-Work.png) center/cover' }}>
+                <div className="brand-story__placeholder" style={{ background: 'linear-gradient(rgba(43, 35, 32, 0.4), rgba(43, 35, 32, 0.7)), url(/Artisan-at-Work.webp) center/cover' }}>
                   <span className="font-serif">Our Workshop</span>
                   <span className="eyebrow">Ayodhya, UP</span>
                 </div>

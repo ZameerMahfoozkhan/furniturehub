@@ -178,15 +178,15 @@ export default function CustomFurniture() {
             {[
               {
                 title: 'Bespoke Dining Table',
-                src: '/custom_furniture_1.png'
+                src: '/custom_furniture_1.webp'
               },
               {
                 title: 'Custom Wardrobe Design',
-                src: '/custom_furniture_2.png'
+                src: '/custom_furniture_2.webp'
               },
               {
                 title: 'Made-to-Order Headboard',
-                src: '/custom_furniture_3.png'
+                src: '/custom_furniture_3.webp'
               }
             ].map((item, i) => (
               <motion.div key={i} className="gallery-item" variants={staggerItem}>

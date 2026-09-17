@@ -19,7 +19,7 @@
 .bulk-hero__bg {
   position: absolute;
   inset: -20% 0;
-  background-image: url('/hero.png');
+  background-image: url('/hero.webp');
   background-size: cover;
   background-position: center 30%;
   z-index: 0;

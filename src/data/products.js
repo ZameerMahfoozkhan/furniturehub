@@ -29,10 +29,10 @@ export const products = [
       warranty: '3 Year Frame Warranty',
     },
     images: [
-      { label: 'Front View', src: '/3-seater-sofa-front-view.jpeg' },
-      { label: 'Side View', src: '/3-seater-sofa-side-view.jpeg' },
-      { label: 'Tilt View', src: '/3-seater-sofa-tilt-view.jpeg' },
-      { label: 'Back View', src: '/3-seater-sofa-back-view.jpeg' },
+      { label: 'Front View', src: '/3-seater-sofa-front-view.webp' },
+      { label: 'Side View', src: '/3-seater-sofa-side-view.webp' },
+      { label: 'Tilt View', src: '/3-seater-sofa-tilt-view.webp' },
+      { label: 'Back View', src: '/3-seater-sofa-back-view.webp' },
     ],
   },
   {
@@ -53,10 +53,10 @@ export const products = [
       warranty: '3 Year Frame Warranty',
     },
     images: [
-      { label: 'Front View', src: '/white-3-seater-sofa-front-view.jpeg' },
-      { label: 'Side View', src: '/white-3-seater-sofa-side-view.jpeg' },
-      { label: 'Zoom View', src: '/white-3-seater-sofa-zoom-view.jpeg' },
-      { label: 'Measurement View', src: '/white-3-seater-sofa-measurement-view.jpeg' },
+      { label: 'Front View', src: '/white-3-seater-sofa-front-view.webp' },
+      { label: 'Side View', src: '/white-3-seater-sofa-side-view.webp' },
+      { label: 'Zoom View', src: '/white-3-seater-sofa-zoom-view.webp' },
+      { label: 'Measurement View', src: '/white-3-seater-sofa-measurement-view.webp' },
     ],
   },
 
@@ -81,9 +81,9 @@ export const products = [
       warranty: '1 Year Warranty',
     },
     images: [
-      { label: 'Front View', src: '/Executive Office Desk-front.jpeg' },
-      { label: 'Side View', src: '/Executive Office Desk-side.jpeg' },
-      { label: 'Zoom View', src: '/Executive Office Desk-zoom.jpeg' },
+      { label: 'Front View', src: '/Executive Office Desk-front.webp' },
+      { label: 'Side View', src: '/Executive Office Desk-side.webp' },
+      { label: 'Zoom View', src: '/Executive Office Desk-zoom.webp' },
     ]
   },
   {
@@ -104,9 +104,9 @@ export const products = [
       warranty: '1 Year Warranty',
     },
     images: [
-      { label: 'View 1', src: '/Luxury Bathroom Vanity Unit-1.jpeg' },
-      { label: 'View 2', src: '/Luxury Bathroom Vanity Unit-2.jpeg' },
-      { label: 'View 3', src: '/Luxury Bathroom Vanity Unit-3.jpeg' },
+      { label: 'View 1', src: '/Luxury Bathroom Vanity Unit-1.webp' },
+      { label: 'View 2', src: '/Luxury Bathroom Vanity Unit-2.webp' },
+      { label: 'View 3', src: '/Luxury Bathroom Vanity Unit-3.webp' },
     ]
   },
   {
@@ -127,10 +127,10 @@ export const products = [
       warranty: '2 Year Warranty',
     },
     images: [
-      { label: 'Closed View', src: '/3-Door Wooden Wardrobe-side.jpeg' },
-      { label: 'One Door Open', src: '/3-Door Wooden Wardrobe-one-door-open.jpeg' },
-      { label: 'Open View', src: '/3-Door Wooden Wardrobe-open.jpeg' },
-      { label: 'Lock Detail', src: '/3-Door Wooden Wardrobe-zoom-lock.jpeg' },
+      { label: 'Closed View', src: '/3-Door Wooden Wardrobe-side.webp' },
+      { label: 'One Door Open', src: '/3-Door Wooden Wardrobe-one-door-open.webp' },
+      { label: 'Open View', src: '/3-Door Wooden Wardrobe-open.webp' },
+      { label: 'Lock Detail', src: '/3-Door Wooden Wardrobe-zoom-lock.webp' },
     ]
   },
   {
@@ -151,8 +151,8 @@ export const products = [
       warranty: '1 Year Warranty',
     },
     images: [
-      { label: 'Front View', src: '/Modern Wall-Mounted TV Unit-front.jpeg' },
-      { label: 'Side View', src: '/Modern Wall-Mounted TV Unit-side.jpeg' },
+      { label: 'Front View', src: '/Modern Wall-Mounted TV Unit-front.webp' },
+      { label: 'Side View', src: '/Modern Wall-Mounted TV Unit-side.webp' },
     ]
   },
   {
@@ -173,9 +173,9 @@ export const products = [
       warranty: '1 Year Warranty',
     },
     images: [
-      { label: 'Front View', src: '/Modern Wooden Shoe Rack Cabinet-front.jpeg' },
-      { label: 'Open View', src: '/Modern Wooden Shoe Rack Cabinet-open.jpeg' },
-      { label: 'Side View', src: '/Modern Wooden Shoe Rack Cabinet-side.jpeg' },
+      { label: 'Front View', src: '/Modern Wooden Shoe Rack Cabinet-front.webp' },
+      { label: 'Open View', src: '/Modern Wooden Shoe Rack Cabinet-open.webp' },
+      { label: 'Side View', src: '/Modern Wooden Shoe Rack Cabinet-side.webp' },
     ]
   },
   {
@@ -195,9 +195,9 @@ export const products = [
       warranty: '1 Year Warranty',
     },
     images: [
-      { label: 'Front View', src: '/mandrir-1-front.jpg' },
-      { label: 'Open View', src: '/mandrir-1-open.jpg' },
-      { label: 'Measurement', src: '/mandrir-1-measurement.jpg' },
+      { label: 'Front View', src: '/mandrir-1-front.webp' },
+      { label: 'Open View', src: '/mandrir-1-open.webp' },
+      { label: 'Measurement', src: '/mandrir-1-measurement.webp' },
     ]
   },
   {
@@ -217,10 +217,10 @@ export const products = [
       warranty: '1 Year Warranty',
     },
     images: [
-      { label: 'Front View', src: '/mandrir-2-front..jpg' },
-      { label: 'Open Front View', src: '/mandrir-2-open-front.jpg' },
-      { label: 'Open Side View', src: '/mandrir-2-open-side.jpg' },
-      { label: 'Measurement', src: '/mandrir-2-measurement.jpg' },
+      { label: 'Front View', src: '/mandrir-2-front..webp' },
+      { label: 'Open Front View', src: '/mandrir-2-open-front.webp' },
+      { label: 'Open Side View', src: '/mandrir-2-open-side.webp' },
+      { label: 'Measurement', src: '/mandrir-2-measurement.webp' },
     ]
   },
   {
@@ -240,10 +240,10 @@ export const products = [
       warranty: '1 Year Warranty',
     },
     images: [
-      { label: 'Front View', src: '/Whitora-Bed.jpg' },
-      { label: 'Without Mattress', src: '/Whitora-Bed-without-mattress.jpg' },
-      { label: 'Side View', src: '/Whitora-Bed-side.jpg' },
-      { label: 'Measurement', src: '/Whitora-Bed-measurement.jpg' },
+      { label: 'Front View', src: '/Whitora-Bed.webp' },
+      { label: 'Without Mattress', src: '/Whitora-Bed-without-mattress.webp' },
+      { label: 'Side View', src: '/Whitora-Bed-side.webp' },
+      { label: 'Measurement', src: '/Whitora-Bed-measurement.webp' },
     ]
   },
   {
@@ -263,9 +263,9 @@ export const products = [
       warranty: '1 Year Warranty',
     },
     images: [
-      { label: 'Side View', src: '/Dark-Walnut-side.jpg' },
-      { label: 'Front View', src: '/Dark-Walnut-front.jpg' },
-      { label: 'Measurement', src: '/Dark-Walnut-measurement.jpg' },
+      { label: 'Side View', src: '/Dark-Walnut-side.webp' },
+      { label: 'Front View', src: '/Dark-Walnut-front.webp' },
+      { label: 'Measurement', src: '/Dark-Walnut-measurement.webp' },
     ]
   }
 ];
